@@ -349,6 +349,8 @@ export function HeroSection() {
           src="/BannerMe.png"
           alt="Ankit portrait"
           fill
+          sizes="(max-width: 768px) 90vw, 46vw"
+          loading="eager"
           className="object-contain object-top md:object-bottom"
         />
       </div>

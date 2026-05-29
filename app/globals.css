@@ -23,6 +23,17 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+  cursor: auto !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 @keyframes marquee-left {
@@ -116,4 +127,27 @@ body {
   opacity: 1;
   transform: translate3d(-200px, -200px, 0);
   will-change: transform;
+}
+
+.invert-cursor-circle {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 19px;
+  height: 19px;
+  transform: translate3d(-200px, -200px, 0) translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2147483647;
+  opacity: 1;
+  will-change: transform;
+}
+
+.invert-cursor-core {
+  display: block;
+  width: 19px;
+  height: 19px;
+  border-radius: 999px;
+  background: #ffffff;
+  mix-blend-mode: difference;
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
