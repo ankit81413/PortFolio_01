@@ -4,19 +4,20 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { MarqueeTitleBlock } from "./MarqueeTitleBlock";
 
-export function HeroSection() {
-  const marqueeSequenceCount = 5;
-  const floatingLogos = [
-    { id: "docker", src: "/logos/docker.jpg" },
-    { id: "react", src: "/logos/react.png" },
-    { id: "javascript", src: "/logos/js.png" },
-    { id: "html", src: "/logos/html.png" },
-    { id: "css", src: "/logos/css.png" },
-    { id: "express", src: "/logos/express.png" },
-    { id: "mongodb", src: "/logos/mongodb.png" },
-    { id: "nodejs", src: "/logos/node.png" },
-  ] as const;
+const MARQUEE_SEQUENCE_COUNT = 5;
+const FLOATING_LOGOS = [
+  { id: "docker", src: "/logos/docker.jpg" },
+  { id: "react", src: "/logos/react.png" },
+  { id: "javascript", src: "/logos/js.png" },
+  { id: "html", src: "/logos/html.png" },
+  { id: "css", src: "/logos/css.png" },
+  { id: "express", src: "/logos/express.png" },
+  { id: "mongodb", src: "/logos/mongodb.png" },
+  { id: "nodejs", src: "/logos/node.png" },
+] as const;
+const ENABLE_SPACE_LOGOS = process.env.NEXT_PUBLIC_ENABLE_SPACE_LOGOS === "true";
 
+export function HeroSection() {
   const sharedImageLayerClass =
     "pointer-events-none absolute inset-x-0 top-0 mx-auto h-[87%] md:top-auto md:bottom-0";
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -63,6 +64,8 @@ export function HeroSection() {
   }, []);
 
   useEffect(() => {
+    if (!ENABLE_SPACE_LOGOS) return;
+
     const container = sectionRef.current;
     const mouseCore = mouseCoreRef.current;
     if (!container || !mouseCore) return;
@@ -74,12 +77,14 @@ export function HeroSection() {
     const drag = 0.997;
     const restitution = 0.92;
     const stepsPerFrame = 2;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let animationId = 0;
+    let running = true;
 
     const rect = () => container.getBoundingClientRect();
     let bounds = rect();
 
-    const bodies = logoElements.map((node, index) => {
+    const bodies = logoElements.map((node) => {
       const size = Math.round(26 + Math.random() * 14);
       const padding = 30;
       const initialX = padding + Math.random() * Math.max(1, bounds.width - size - padding * 2);
@@ -107,14 +112,20 @@ export function HeroSection() {
     mouseCore.style.width = `${mouseDiameter}px`;
     mouseCore.style.height = `${mouseDiameter}px`;
 
-    const onMouseMove = (event: MouseEvent) => {
-      bounds = rect();
+    const logoPairs: Array<[number, number]> = [];
+    for (let i = 0; i < bodies.length; i += 1) {
+      for (let j = i + 1; j < bodies.length; j += 1) {
+        logoPairs.push([i, j]);
+      }
+    }
+
+    const onPointerMove = (event: PointerEvent) => {
       mouse.active = true;
       mouse.x = event.clientX - bounds.left;
       mouse.y = event.clientY - bounds.top;
     };
 
-    const onMouseLeave = () => {
+    const onPointerLeave = () => {
       mouse.active = false;
       mouse.x = -1000;
       mouse.y = -1000;
@@ -125,8 +136,8 @@ export function HeroSection() {
     };
 
     const resolveLogoCollisions = () => {
-      for (let i = 0; i < bodies.length; i += 1) {
-        for (let j = i + 1; j < bodies.length; j += 1) {
+      for (let p = 0; p < logoPairs.length; p += 1) {
+          const [i, j] = logoPairs[p];
           const a = bodies[i];
           const b = bodies[j];
           const ar = a.size / 2;
@@ -163,7 +174,6 @@ export function HeroSection() {
           b.vx += ix;
           b.vy += iy;
         }
-      }
     };
 
     const stepPhysics = () => {
@@ -219,13 +229,16 @@ export function HeroSection() {
     };
 
     const animate = () => {
+      animationId = 0;
+      if (!running) return;
       if (mouse.active) {
         mouseCore.style.transform = `translate3d(${mouse.x - mouseRadius}px, ${mouse.y - mouseRadius}px, 0)`;
       } else {
         mouseCore.style.transform = "translate3d(-120px, -120px, 0)";
       }
 
-      for (let i = 0; i < stepsPerFrame; i += 1) {
+      const activeSteps = prefersReducedMotion ? 1 : stepsPerFrame;
+      for (let i = 0; i < activeSteps; i += 1) {
         stepPhysics();
       }
 
@@ -237,18 +250,40 @@ export function HeroSection() {
       animationId = window.requestAnimationFrame(animate);
     };
 
-    container.addEventListener("mousemove", onMouseMove);
-    container.addEventListener("mouseleave", onMouseLeave);
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        running = entry.isIntersecting && !document.hidden;
+        if (running && !animationId) {
+          animationId = window.requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.01 }
+    );
+    intersectionObserver.observe(container);
+
+    const onVisibilityChange = () => {
+      running = !document.hidden;
+      if (running && !animationId) {
+        animationId = window.requestAnimationFrame(animate);
+      }
+    };
+
+    container.addEventListener("pointermove", onPointerMove, { passive: true });
+    container.addEventListener("pointerleave", onPointerLeave);
     window.addEventListener("resize", onResize);
-    animate();
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    animationId = window.requestAnimationFrame(animate);
 
     return () => {
-      container.removeEventListener("mousemove", onMouseMove);
-      container.removeEventListener("mouseleave", onMouseLeave);
+      running = false;
+      intersectionObserver.disconnect();
+      container.removeEventListener("pointermove", onPointerMove);
+      container.removeEventListener("pointerleave", onPointerLeave);
       window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       window.cancelAnimationFrame(animationId);
     };
-  }, [floatingLogos]);
+  }, []);
 
   return (
     <section
@@ -264,31 +299,33 @@ export function HeroSection() {
         }}
       />
 
-      <div className="floating-tech-layer absolute inset-0 z-10" aria-hidden="true">
-        {floatingLogos.map((item, index) => (
-          <div
-            key={item.id}
-            ref={(node) => {
-              logoRefs.current[index] = node;
-            }}
-            className="floating-tech-item"
-            style={{ width: "32px", height: "32px" }}
-          >
-            <Image
-              src={item.src}
-              alt={`${item.id} logo`}
-              fill
-              sizes="(max-width: 768px) 48px, 72px"
-              className="floating-tech-logo"
-            />
-          </div>
-        ))}
-        <div ref={mouseCoreRef} className="space-mouse-core" />
-      </div>
+      {ENABLE_SPACE_LOGOS ? (
+        <div className="floating-tech-layer absolute inset-0 z-10" aria-hidden="true">
+          {FLOATING_LOGOS.map((item, index) => (
+            <div
+              key={item.id}
+              ref={(node) => {
+                logoRefs.current[index] = node;
+              }}
+              className="floating-tech-item"
+              style={{ width: "32px", height: "32px" }}
+            >
+              <Image
+                src={item.src}
+                alt={`${item.id} logo`}
+                fill
+                sizes="(max-width: 768px) 48px, 72px"
+                className="floating-tech-logo"
+              />
+            </div>
+          ))}
+          <div ref={mouseCoreRef} className="space-mouse-core" />
+        </div>
+      ) : null}
 
       <div className="pointer-events-none absolute inset-x-0 top-12 z-20 overflow-hidden md:top-1/2 md:-translate-y-1/2">
         <div ref={trackRef} className="marquee-track marquee-right">
-          {Array.from({ length: marqueeSequenceCount }).map((_, index) => (
+          {Array.from({ length: MARQUEE_SEQUENCE_COUNT }).map((_, index) => (
             <div
               key={index}
               ref={
