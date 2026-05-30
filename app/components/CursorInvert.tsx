@@ -19,27 +19,21 @@ export function CursorInvert() {
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
 
-    const onMouseMove = (event: MouseEvent) => {
+    const onPointerMove = (event: PointerEvent) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
       setCursorPosition(mouseX, mouseY);
     };
 
     setCursorPosition(mouseX, mouseY);
-    document.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.addEventListener("pointermove", onPointerMove, { passive: true });
 
     return () => {
-      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("pointermove", onPointerMove);
     };
   }, []);
 
   return (
-    <div
-      ref={cursorRef}
-      aria-hidden="true"
-      className="invert-cursor-circle"
-    >
-      <span className="invert-cursor-core" />
-    </div>
+    <div ref={cursorRef} aria-hidden="true" className="invert-cursor-circle" />
   );
 }
