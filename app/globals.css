@@ -149,6 +149,7 @@ html {
   gap: 0;
   mix-blend-mode: difference;
   will-change: transform;
+  transition: 180ms ease;
 }
 
 .invert-cursor-lobe {
