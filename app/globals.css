@@ -133,18 +133,33 @@ html {
   will-change: transform;
 }
 
-.invert-cursor-circle {
+.invert-cursor-eight {
   position: fixed;
   left: 0;
   top: 0;
-  width: 20px;
+  width: 34px;
   height: 20px;
   transform: translate3d(-200px, -200px, 0) translate(-50%, -50%);
   pointer-events: none;
   z-index: 2147483647;
   opacity: 1;
-  border-radius: 999px;
-  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
   mix-blend-mode: difference;
   will-change: transform;
+}
+
+.invert-cursor-lobe {
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.invert-cursor-lobe + .invert-cursor-lobe {
+  margin-left: -6px;
 }

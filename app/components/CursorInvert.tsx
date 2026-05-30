@@ -34,6 +34,9 @@ export function CursorInvert() {
   }, []);
 
   return (
-    <div ref={cursorRef} aria-hidden="true" className="invert-cursor-circle" />
+    <div ref={cursorRef} aria-hidden="true" className="invert-cursor-eight">
+      <span className="invert-cursor-lobe" />
+      <span className="invert-cursor-lobe" />
+    </div>
   );
 }
