@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from "react";
+import { CursorVisual } from "./CursorVisual";
 
 export function CursorInvert() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -59,8 +60,7 @@ export function CursorInvert() {
 
   return (
     <div ref={cursorRef} aria-hidden="true" className="invert-cursor-eight">
-      <span className="invert-cursor-lobe" />
-      <span className="invert-cursor-lobe" />
+      <CursorVisual />
     </div>
   );
 }
