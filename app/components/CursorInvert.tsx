@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CursorVisual } from "./CursorVisual";
 
 export function CursorInvert() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const hoveredElementRef = useRef<Element | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const HOVER_SCALE = 2.5;
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -17,6 +19,10 @@ export function CursorInvert() {
     const setCursorPosition = (x: number, y: number, scale = 1) => {
       cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
     };
+    const applyHoverState = (hovered: boolean) => {
+      cursor.classList.toggle("is-hovered", hovered);
+      setIsHovering((prev) => (prev === hovered ? prev : hovered));
+    };
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -26,7 +32,9 @@ export function CursorInvert() {
       mouseY = event.clientY;
       const target = event.target;
       if (!(target instanceof Element)) {
-        setCursorPosition(mouseX, mouseY, hoveredElementRef.current ? 2 : 1);
+        const hovered = Boolean(hoveredElementRef.current);
+        setCursorPosition(mouseX, mouseY, hovered ? HOVER_SCALE : 1);
+        applyHoverState(hovered);
         return;
       }
 
@@ -46,7 +54,9 @@ export function CursorInvert() {
         hoveredElementRef.current = interactiveElement;
       }
 
-      setCursorPosition(mouseX, mouseY, interactiveElement ? 2 : 1);
+      const hovered = Boolean(interactiveElement);
+      setCursorPosition(mouseX, mouseY, hovered ? HOVER_SCALE : 1);
+      applyHoverState(hovered);
     };
 
     setCursorPosition(mouseX, mouseY, 1);
@@ -60,7 +70,7 @@ export function CursorInvert() {
 
   return (
     <div ref={cursorRef} aria-hidden="true" className="invert-cursor-eight">
-      <CursorVisual />
+      <CursorVisual isHovering={isHovering} />
     </div>
   );
 }

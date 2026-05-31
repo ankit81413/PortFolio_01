@@ -137,7 +137,7 @@ html {
   position: fixed;
   left: 0;
   top: 0;
-  width: 34px;
+  width: 20px;
   height: 20px;
   transform: translate3d(-200px, -200px, 0) translate(-50%, -50%);
   pointer-events: none;
@@ -147,6 +147,8 @@ html {
   align-items: center;
   justify-content: center;
   gap: 0;
+  /* mix-blend-mode: normal; */
+  
   mix-blend-mode: difference;
   will-change: transform;
   transition: 180ms ease;
@@ -159,8 +161,106 @@ html {
   height: 20px;
   border-radius: 999px;
   background: #ffffff;
+  position: relative;
+  z-index: 2;
+  transition: transform 180ms ease;
 }
 
 .invert-cursor-lobe + .invert-cursor-lobe {
   margin-left: -6px;
+}
+
+.cursor-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.cursor-gemini-outer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 0;
+  z-index: 1;
+  
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.cursor-gemini-shape {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25), 0 0 18px rgba(255, 255, 255, 0.45);
+  transform-origin: 50% 50%;
+}
+
+.cursor-visual.is-hovering .cursor-gemini-outer {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* .cursor-visual.is-hovering .cursor-gemini-shape {
+  animation: cursor-shape-cycle 2.6s steps(1, end) infinite,
+    gemini-outer-spin 2.2s linear infinite;
+} */
+
+.cursor-visual.is-hovering .cursor-gemini-shape {
+  animation: cursor-shape-cycle 5s steps(1, end) infinite,
+    gemini-outer-spin 8s linear infinite;
+}
+
+.invert-cursor-eight.is-hovered .invert-cursor-lobe {
+  transform: scale(0.78);
+}
+
+@keyframes cursor-shape-cycle {
+  0%,
+  19.99% {
+    clip-path: ellipse(50% 50% at 50% 50%);
+    border-radius: 999px;
+  }
+  20%,
+  39.99% {
+    clip-path: path(
+      "M 50 8 Q 58 8 64 14 L 84 28 Q 90 32 88 40 L 76 78 Q 74 86 66 86 L 34 86 Q 26 86 24 78 L 12 40 Q 10 32 16 28 L 36 14 Q 42 8 50 8 Z"
+    );
+    border-radius: 0;
+  }
+  40%,
+  59.99% {
+    clip-path: path(
+      "M 50 8 C 56 16 64 16 72 12 C 76 20 84 24 92 24 C 90 32 94 40 100 50 C 94 60 90 68 92 76 C 84 76 76 80 72 88 C 64 84 56 84 50 92 C 44 84 36 84 28 88 C 24 80 16 76 8 76 C 10 68 6 60 0 50 C 6 40 10 32 8 24 C 16 24 24 20 28 12 C 36 16 44 16 50 8 Z"
+    );
+    border-radius: 0;
+  }
+  60%,
+  79.99% {
+    clip-path: path(
+      "M 24 14 Q 28 8 36 10 L 64 10 Q 72 8 76 14 L 90 42 Q 94 50 90 58 L 76 86 Q 72 92 64 90 L 36 90 Q 28 92 24 86 L 10 58 Q 6 50 10 42 Z"
+    );
+    border-radius: 0;
+  }
+  80%,
+  100% {
+    clip-path: inset(18% 0% 18% 0% round 999px);
+    border-radius: 999px;
+  }
+}
+
+@keyframes gemini-outer-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

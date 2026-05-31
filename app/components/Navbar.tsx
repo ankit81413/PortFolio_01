@@ -68,8 +68,9 @@ export function Navbar() {
         <div className="hidden items-center gap-3 text-[11px] uppercase tracking-[0.11em] text-black md:flex">
           <a
             href="#"
-            className="rounded-full border border-transparent px-3 py-2 transition-all duration-200 hover:border-black/10 hover:bg-black/[0.03]"
+            className="inline-flex items-center gap-1 rounded-full border border-transparent px-3 py-2 transition-all duration-200 hover:border-black/10 hover:bg-black/[0.03]"
           >
+            <i className="fa-solid fa-tree" aria-hidden="true"></i>
             Linktree
           </a>
           <a
