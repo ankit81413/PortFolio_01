@@ -12,7 +12,7 @@ const FOOTER_LINKS = [
 const QUICK_LINKS = [
   { label: "About", href: "#about-section" },
   { label: "Projects", href: "#projects-section" },
-  { label: "Timeline", href: "#timeline-section" },
+  { label: "Experience", href: "#experience-section" },
   { label: "Contact", href: "#contact-section" },
 ];
 
@@ -103,3 +103,4 @@ export function FooterSection() {
     </footer>
   );
 }
+

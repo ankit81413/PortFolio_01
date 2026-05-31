@@ -1,4 +1,4 @@
-type TimelineEvent = {
+type ExperienceEvent = {
   id: string;
   range: string;
   duration: string;
@@ -10,7 +10,7 @@ type TimelineEvent = {
   links: Array<{ label: string; href: string }>;
 };
 
-const TIMELINE_EVENTS: TimelineEvent[] = [
+const TIMELINE_EVENTS: ExperienceEvent[] = [
   {
     id: "t1",
     range: "Apr, 2022 - Jul, 2022",
@@ -97,14 +97,14 @@ const TIMELINE_EVENTS: TimelineEvent[] = [
   },
 ];
 
-const TYPE_LABEL: Record<TimelineEvent["type"], string> = {
+const TYPE_LABEL: Record<ExperienceEvent["type"], string> = {
   feat: "feat",
   learn: "learn",
   merge: "merge",
   release: "release",
 };
 
-const TYPE_COLOR: Record<TimelineEvent["type"], string> = {
+const TYPE_COLOR: Record<ExperienceEvent["type"], string> = {
   feat: "bg-cyan-400",
   learn: "bg-amber-300",
   merge: "bg-violet-400",
@@ -114,7 +114,7 @@ const TYPE_COLOR: Record<TimelineEvent["type"], string> = {
 export function DeveloperTimelineSection() {
   return (
     <section
-      id="timeline-section"
+      id="experience-section"
       className="relative z-40 bg-black px-6 py-16 text-white md:px-10 md:py-24"
     >
       <div className="mx-auto w-full max-w-[1600px]">
@@ -123,7 +123,7 @@ export function DeveloperTimelineSection() {
             git log --graph --oneline --decorate
           </p>
           <h2 className="text-5xl font-semibold leading-none tracking-tight md:text-8xl">
-            Timeline
+            Experience
           </h2>
         </div>
 
@@ -181,14 +181,36 @@ export function DeveloperTimelineSection() {
                   <p className="my-3 text-[10px] font-mono uppercase tracking-[0.08em] text-white/50 md:text-[11px]">
                     {event.duration}
                   </p>
-                  <div className="flex flex-wrap gap-2 md:justify-end">
+                  <div className="flex flex-col items-start gap-3 md:items-end">
                     {event.links.map((link) => (
                       <a
                         key={link.label}
                         href={link.href}
-                        className="inline-flex items-center rounded border border-white/30 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/85 transition-colors hover:bg-white hover:text-black md:text-[11px]"
+                        className="group inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/90 md:text-[11px]"
                       >
-                        {link.label}
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 20 20"
+                          className="h-4 w-4"
+                          fill="none"
+                        >
+                          <path
+                            d="M4 16L16 4"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                          />
+                          <path
+                            d="M8 4H16V12"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span className="border-b border-dashed border-transparent pb-[1px] transition-colors group-hover:border-white">
+                          {link.label}
+                        </span>
                       </a>
                     ))}
                   </div>
@@ -201,3 +223,4 @@ export function DeveloperTimelineSection() {
     </section>
   );
 }
+

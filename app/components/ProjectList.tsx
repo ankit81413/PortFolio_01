@@ -87,6 +87,7 @@ const PROJECTS: ProjectItem[] = [
 
 export function ProjectList() {
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [panelHeights, setPanelHeights] = useState<Record<string, number>>({});
   const rowRefs = useRef<Record<string, HTMLElement | null>>({});
   const panelInnerRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -142,7 +143,7 @@ export function ProjectList() {
   };
 
   return (
-    <div className="mt-16 border-t border-black/50 md:mt-20">
+    <div className="mt-16 w-full border-t border-black/50 md:mt-20">
       {PROJECTS.map((project) => {
         const isExpanded = expandedProject === project.id;
 
@@ -152,13 +153,43 @@ export function ProjectList() {
             ref={(node) => {
               rowRefs.current[project.id] = node;
             }}
-            className="border-b border-black/50 py-8"
+            onMouseEnter={() => setHoveredProject(project.id)}
+            onMouseLeave={() => setHoveredProject((current) => (current === project.id ? null : current))}
+            className={`group relative border-b border-black/50 transition-colors duration-200 ${
+              isExpanded ? "" : "hover:bg-black"
+            }`}
           >
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-8">
+            <div
+              aria-hidden="true"
+              className={`pointer-events-none absolute left-1/2 top-1/2 z-20 hidden -translate-y-1/2 md:block transition-all duration-250 ${
+                hoveredProject === project.id && !isExpanded
+                  ? "translate-x-[-4%] opacity-100"
+                  : "translate-x-[-2%] opacity-0"
+              }`}
+            >
+              <Image
+                src={project.image}
+                alt=""
+                width={360}
+                height={210}
+                className="h-[260px] w-auto rounded-sm border border-black/20 bg-white object-cover object-top shadow-[0_16px_44px_rgba(0,0,0,0.24)]"
+              />
+            </div>
+
+            <div className="flex flex-col gap-4 md:flex-row md:items-center px-6 md:justify-between md:gap-8 md:px-10">
               <div className="flex items-center gap-4 md:gap-6">
-                <span className="text-2xl leading-none md:text-4xl">⌘</span>
-                <span className="h-10 w-px bg-black/70" aria-hidden="true" />
-                <p className="text-2xl leading-tight md:text-3xl">
+                <span className={`text-2xl leading-none transition-colors duration-200 md:text-4xl ${isExpanded ? "" : "group-hover:text-white"}`}>⌘</span>
+                <div className="relative h-10 w-14 overflow-hidden bg-white md:h-20 md:w-35">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} thumbnail`}
+                    fill
+                    sizes="(max-width: 768px) 56px, 80px"
+                    className="object-cover object-center"
+                  />
+                </div>
+                <span className={`h-10 w-px bg-black/70 transition-colors duration-200 md:h-12 ${isExpanded ? "" : "group-hover:bg-white/70"}`} aria-hidden="true" />
+                <p className={`py-8 text-2xl leading-tight transition-colors duration-200 md:text-3xl ${isExpanded ? "" : "group-hover:text-white"}`}>
                   {project.title} - {project.subtitle}
                 </p>
               </div>
@@ -169,7 +200,7 @@ export function ProjectList() {
                 className={`w-fit cursor-pointer rounded-lg border border-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] transition-colors md:px-5 md:py-3 ${
                   isExpanded
                     ? "bg-black text-white"
-                    : "bg-transparent text-black hover:bg-black hover:text-white"
+                    : `bg-transparent text-black hover:bg-white hover:text-black ${isExpanded ? "" : "group-hover:border-white/80 group-hover:text-white"}`
                 }`}
               >
                 {isExpanded ? "Collapse" : "Expand"}
@@ -275,3 +306,5 @@ export function ProjectList() {
     </div>
   );
 }
+
+

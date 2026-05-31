@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { BsFillHexagonFill } from "react-icons/bs";
 import { MarqueeTitleBlock } from "./MarqueeTitleBlock";
 
 const MARQUEE_SEQUENCE_COUNT = 5;
@@ -18,6 +19,8 @@ const FLOATING_LOGOS = [
 const ENABLE_SPACE_LOGOS = process.env.NEXT_PUBLIC_ENABLE_SPACE_LOGOS === "true";
 
 export function HeroSection() {
+  const [showShoulderLinks, setShowShoulderLinks] = useState(false);
+  const [countdownMs, setCountdownMs] = useState(3000);
   const sharedImageLayerClass =
     "pointer-events-none absolute inset-x-0 top-0 mx-auto h-[87%] md:top-auto md:bottom-0";
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -26,6 +29,30 @@ export function HeroSection() {
   const secondSequenceRef = useRef<HTMLDivElement | null>(null);
   const mouseCoreRef = useRef<HTMLDivElement | null>(null);
   const logoRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  useEffect(() => {
+    const revealDelayMs = 3000;
+    const startedAt = Date.now();
+
+    const countdownTimer = window.setInterval(() => {
+      const elapsed = Date.now() - startedAt;
+      const remaining = Math.max(0, revealDelayMs - elapsed);
+      setCountdownMs(remaining);
+      if (remaining <= 0) {
+        window.clearInterval(countdownTimer);
+      }
+    }, 80);
+
+    const revealTimer = window.setTimeout(() => {
+      setShowShoulderLinks(true);
+      setCountdownMs(0);
+    }, revealDelayMs);
+
+    return () => {
+      window.clearInterval(countdownTimer);
+      window.clearTimeout(revealTimer);
+    };
+  }, []);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -353,6 +380,92 @@ export function HeroSection() {
           loading="eager"
           className="object-contain object-top md:object-bottom"
         />
+      </div>
+
+      {!showShoulderLinks ? (
+        <div className="pointer-events-none absolute inset-x-0 bottom-9 z-40 hidden md:block">
+          <div className="flex justify-end px-6 md:px-10">
+            <div className="relative flex h-12 w-12 items-center justify-center">
+              <BsFillHexagonFill className="h-full w-full text-black drop-shadow-[0_8px_20px_rgba(0,0,0,0.28)]" />
+              <span className="absolute text-xs font-semibold leading-none text-white">
+                {Math.max(1, Math.ceil(countdownMs / 1000))}
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      <div
+        className={`pointer-events-none absolute inset-x-0 bottom-8 z-40 hidden transition-opacity duration-400 md:bottom-10 md:block ${
+          showShoulderLinks ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <div className="flex items-center justify-between px-6 md:px-15 ">
+          <a
+            href="#about-section"
+            className="pointer-events-auto group inline-flex items-end gap-2 text-black transition-opacity hover:opacity-80 md:gap-3"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 120 120"
+              className="h-10 w-10 transition-transform duration-200 group-hover:-translate-y-1 md:h-12 md:w-12"
+              fill="none"
+            >
+              <path
+                d="M18 26H54C67.255 26 78 36.7452 78 50V92"
+                stroke="currentColor"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M58 72L78 92L98 72"
+                stroke="currentColor"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span
+              className={`hero-type-text text-4xl font-semibold leading-none tracking-tight md:text-6xl ${
+                showShoulderLinks ? "is-visible" : ""
+              }`}
+            >About</span>
+          </a>
+
+          <a
+            href="#projects-section"
+            className="pointer-events-auto group inline-flex items-end gap-2 text-black transition-opacity hover:opacity-80 md:gap-3"
+          >
+            <span
+              className={`hero-type-text text-4xl font-semibold leading-none tracking-tight md:text-6xl ${
+                showShoulderLinks ? "is-visible" : ""
+              }`}
+              style={{ animationDelay: "220ms" }}
+            >Projects</span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 120 120"
+              className="h-10 w-10 transition-transform duration-200 group-hover:-translate-y-1 md:h-12 md:w-12"
+              fill="none"
+            >
+              <path
+                d="M18 26H54C67.255 26 78 36.7452 78 50V92"
+                stroke="currentColor"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M58 72L78 92L98 72"
+                stroke="currentColor"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );

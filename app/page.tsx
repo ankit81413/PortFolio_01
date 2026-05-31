@@ -38,6 +38,27 @@ export default function Home() {
                 polished digital experiences that are practical, performant, and
                 visually memorable.
               </p>
+
+              <div className="max-w-4xl border-l border-white/20 pl-4 md:pl-6">
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.12em] text-white/55">
+                  Skills
+                </p>
+                <ul className="space-y-1.5 text-sm leading-relaxed text-white/80 md:text-base">
+                  <li>
+                    <span className="font-semibold text-white">Frontend</span> — React, Next.js, TypeScript, Tailwind
+                  </li>
+                  <li>
+                    <span className="font-semibold text-white">Backend</span> — Node.js, Express, REST APIs
+                  </li>
+                  <li>
+                    <span className="font-semibold text-white">Database</span> — MongoDB, Mongoose
+                  </li>
+                  <li>
+                    <span className="font-semibold text-white">Tools</span> — Git, Figma, Postman
+                  </li>
+                </ul>
+              </div>
+
             </div>
           </div>
         </section>
