@@ -7,7 +7,7 @@ export function CursorInvert() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const hoveredElementRef = useRef<Element | null>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const HOVER_SCALE = 2.5;
+  const HOVER_SCALE = 3;
 
   useEffect(() => {
     const cursor = cursorRef.current;
