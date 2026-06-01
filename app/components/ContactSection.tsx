@@ -78,37 +78,37 @@ export function ContactSection() {
   return (
     <section
       id="contact-section"
-      className="relative z-40 bg-[#f7f7f5] px-6 py-16 text-black md:px-10 md:py-24"
+      className="relative z-40 bg-[#f7f7f5] px-4 py-14 text-black sm:px-6 md:px-10 md:py-24"
     >
       <div className="mx-auto w-full max-w-[1600px]">
-        <div className="mb-10 border-b border-black/15 pb-6 md:mb-14 md:pb-8">
-          <h2 className="text-5xl font-semibold leading-none tracking-tight md:text-8xl">
+        <div className="mb-8 border-b border-black/15 pb-5 md:mb-14 md:pb-8">
+          <h2 className="text-4xl font-semibold leading-none tracking-tight sm:text-5xl md:text-8xl">
             Contact
           </h2>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 md:gap-10">
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-3 sm:gap-4 md:grid-cols-2">
             {SOCIAL_CARDS.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl border p-5 transition-all duration-200 hover:-translate-y-0.5 md:min-h-[260px] ${item.boxClass}`}
+                className={`group relative flex min-h-[165px] flex-col justify-between overflow-hidden rounded-2xl border p-4 transition-all duration-200 hover:-translate-y-0.5 sm:min-h-[190px] sm:p-5 md:min-h-[260px] ${item.boxClass}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-xl border text-lg ${item.iconWrapClass}`}
+                    className={`flex h-10 w-10 items-center justify-center rounded-xl border text-base sm:h-12 sm:w-12 sm:text-lg ${item.iconWrapClass}`}
                   >
                     <i className={item.iconClass} aria-hidden="true" />
                   </div>
-                  <span className={`text-sm font-semibold uppercase tracking-[0.06em] ${item.titleClass}`}>
+                  <span className={`text-xs font-semibold uppercase tracking-[0.06em] sm:text-sm ${item.titleClass}`}>
                     {item.label} <i className="fa-solid fa-arrow-up-right-from-square text-xs" />
                   </span>
                 </div>
 
                 <div className="pb-1">
                   <p
-                    className={`max-w-full break-words text-[36px] font-semibold leading-[0.94] tracking-[-0.02em] ${item.titleClass} md:text-[45px]`}
+                    className={`max-w-full break-words text-[26px] font-semibold leading-[0.95] tracking-[-0.02em] sm:text-[32px] md:text-[45px] ${item.titleClass}`}
                     style={{ overflowWrap: "anywhere" }}
                   >
                     {item.handle}
@@ -118,7 +118,7 @@ export function ContactSection() {
             ))}
           </div>
 
-          <div className="rounded-2xl border border-black/15 bg-white p-6 md:p-8">
+          <div className="rounded-2xl border border-black/15 bg-white p-5 sm:p-6 md:p-8">
             <div className="mb-4 border-b border-black/15 pb-3">
               <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-black/65">
                 Direct links
@@ -139,7 +139,7 @@ export function ContactSection() {
                           <span className="block text-xs uppercase tracking-[0.09em] text-black/50 transition-colors duration-200 group-hover:text-white/70">
                             {item.label}
                           </span>
-                          <span className="mt-0.5 block text-lg font-medium text-black/90 transition-colors duration-200 group-hover:text-white md:text-xl">
+                          <span className="mt-0.5 block break-words pr-2 text-base font-medium text-black/90 transition-colors duration-200 group-hover:text-white sm:text-lg md:text-xl">
                             {item.value}
                           </span>
                         </span>
@@ -171,7 +171,7 @@ export function ContactSection() {
                           <span className="block text-xs uppercase tracking-[0.09em] text-black/50 transition-colors duration-200 group-hover:text-white/70">
                             {item.label}
                           </span>
-                          <span className="mt-0.5 block text-lg font-medium text-black/90 transition-colors duration-200 group-hover:text-white md:text-xl">
+                          <span className="mt-0.5 block break-words pr-2 text-base font-medium text-black/90 transition-colors duration-200 group-hover:text-white sm:text-lg md:text-xl">
                             {item.value}
                           </span>
                         </span>
