@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { BsDownload, BsList, BsTreeFill } from "react-icons/bs";
+import { BsChevronDown, BsChevronRight, BsDownload, BsList, BsTreeFill } from "react-icons/bs";
 
 const LINKTREE_ITEMS = [
   { label: "GitHub", href: "https://github.com/", branch: "origin/github" },
@@ -266,7 +266,11 @@ export function Navbar() {
                     aria-expanded={isPagesOpen}
                   >
                     <span className="inline-flex items-center gap-2">
-                      <span className="text-[11px] leading-none">{isPagesOpen ? "v" : ">"}</span>
+                      {isPagesOpen ? (
+                        <BsChevronDown className="h-3 w-3 text-white/75" aria-hidden="true" />
+                      ) : (
+                        <BsChevronRight className="h-3 w-3 text-white/75" aria-hidden="true" />
+                      )}
                       <span>PAGES</span>
                     </span>
                     <span className="font-mono text-[10px] text-white/45">{PAGE_ITEMS.length}</span>

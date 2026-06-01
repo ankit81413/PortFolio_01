@@ -6,10 +6,12 @@ import { FooterSection } from "./components/FooterSection";
 import { ProjectList } from "./components/ProjectList";
 import { ProjectsStickyHeader } from "./components/ProjectsStickyHeader";
 import { SectionDock } from "./components/SectionDock";
+import { LoadingScreen } from "./components/LoadingScreen";
 
 export default function Home() {
   return (
     <main id="top" className="relative min-h-screen bg-white">
+      <LoadingScreen />
       <Navbar />
       <SectionDock />
 

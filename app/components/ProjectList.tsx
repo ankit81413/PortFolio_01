@@ -197,9 +197,9 @@ export function ProjectList() {
               <button
                 type="button"
                 onClick={() => onToggleProject(project.id)}
-                className={`w-fit cursor-pointer rounded-lg border border-black/70 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors md:px-5 md:py-3 md:text-xs ${
+                className={`project-expand-hint w-fit cursor-pointer rounded-lg border border-black/70 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors md:px-5 md:py-3 md:text-xs ${
                   isExpanded
-                    ? "bg-black text-white"
+                    ? "is-expanded bg-black text-white"
                     : `bg-transparent text-black hover:bg-white hover:text-black ${isExpanded ? "" : "group-hover:border-white/80 group-hover:text-white"}`
                 }`}
               >
