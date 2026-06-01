@@ -42,8 +42,8 @@ export function FooterSection() {
 
   return (
     <footer
-      className={`fixed inset-x-0 bottom-0 z-0 min-h-[460px] overflow-hidden bg-black px-6 pb-8 pt-14 text-white md:min-h-[520px] md:px-10 md:pb-10 md:pt-18 ${
-        isVisible ? "block" : "hidden"
+      className={`relative z-40 block overflow-hidden bg-black px-6 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-14 text-white md:fixed md:inset-x-0 md:bottom-0 md:z-0 md:min-h-[520px] md:px-10 md:pb-10 md:pt-18 ${
+        isVisible ? "md:block" : "md:hidden"
       }`}
     >
       <div

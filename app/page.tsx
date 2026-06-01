@@ -14,13 +14,13 @@ export default function Home() {
       <SectionDock />
 
       <div className="relative">
-        <div className="sticky top-0 h-screen">
+        <div className="sticky top-0 h-[58svh] min-h-[430px] max-h-[520px] md:h-screen md:min-h-0 md:max-h-none">
           <HeroSection />
         </div>
 
         <section
           id="about-section"
-          className="relative z-30 mt-6 rounded-t-2xl bg-black px-6 py-16 text-white md:mt-8 md:px-10 md:py-24"
+          className="relative z-30 mt-0 rounded-t-2xl bg-black px-6 py-16 text-white md:mt-8 md:px-10 md:py-24"
         >
           <div className="mx-auto grid w-full max-w-[1600px] gap-12 md:grid-cols-[minmax(180px,280px)_1fr] md:gap-16">
             <h2 className="text-6xl font-medium leading-none tracking-tight md:text-8xl">
@@ -65,12 +65,12 @@ export default function Home() {
 
         <section
           id="projects-section"
-          className="relative z-40 min-h-screen bg-[#f3f3f3] px-6 pb-14 pt-16 text-black md:px-10 md:pb-20 md:pt-14"
+          className="relative z-40 bg-[#f3f3f3] px-6 pb-14 pt-16 text-black md:min-h-screen md:px-10 md:pb-20 md:pt-14"
         >
           <div className="mx-auto w-full max-w-[1600px]">
             <ProjectsStickyHeader />
 
-            <div className="mt-10 pt-10 md:mt-12 md:pt-12">
+            <div className="hidden md:mt-12 md:block md:pt-12">
               <div className="grid gap-10 md:grid-cols-4 md:gap-8">
                 <div className="space-y-4">
                   <p className="text-xs uppercase tracking-[0.08em] text-black/70">
@@ -136,7 +136,7 @@ export default function Home() {
 
         <DeveloperTimelineSection />
         <ContactSection />
-        <div aria-hidden="true" className="h-[460px] md:h-[520px]" />
+        <div aria-hidden="true" className="hidden md:block md:h-[520px]" />
       </div>
       <FooterSection />
     </main>

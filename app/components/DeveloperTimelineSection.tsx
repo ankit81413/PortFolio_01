@@ -115,41 +115,41 @@ export function DeveloperTimelineSection() {
   return (
     <section
       id="experience-section"
-      className="relative z-40 bg-black px-6 py-16 text-white md:px-10 md:py-24"
+      className="relative z-40 bg-black px-4 py-14 text-white sm:px-6 md:px-10 md:py-24"
     >
       <div className="mx-auto w-full max-w-[1600px]">
         <div className="mb-10 border-b border-white/20 pb-6 md:mb-14 md:pb-8">
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-white/60">
+          <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.14em] text-white/60 sm:text-xs sm:tracking-[0.18em]">
             git log --graph --oneline --decorate
           </p>
-          <h2 className="text-5xl font-semibold leading-none tracking-tight md:text-8xl">
+          <h2 className="text-4xl font-semibold leading-none tracking-tight sm:text-5xl md:text-8xl">
             Experience
           </h2>
         </div>
 
-        <div className="space-y-8 md:space-y-10">
+        <div className="space-y-5 md:space-y-10">
           {TIMELINE_EVENTS.map((event, index) => (
             <article
               key={event.id}
-              className="grid grid-cols-[34px_1fr] gap-4 rounded-xl border border-white/15 bg-[#0c0c0c] p-4 md:grid-cols-[72px_1fr] md:gap-8 md:p-7"
+              className="grid min-w-0 grid-cols-[22px_minmax(0,1fr)] gap-3 rounded-xl border border-white/15 bg-[#0c0c0c] p-3 sm:grid-cols-[30px_minmax(0,1fr)] sm:gap-4 sm:p-4 md:grid-cols-[72px_1fr] md:gap-8 md:p-7"
             >
               <div className="relative flex justify-center">
                 {index < TIMELINE_EVENTS.length - 1 ? (
                   <span
                     aria-hidden="true"
-                    className="absolute top-8 h-[calc(100%+2.8rem)] w-px bg-white/20 md:top-10 md:h-[calc(100%+3.6rem)]"
+                    className="absolute top-7 h-[calc(100%+0.7rem)] w-px bg-white/20 sm:top-8 sm:h-[calc(100%+1rem)] md:top-10 md:h-[calc(100%+3.2rem)]"
                   />
                 ) : null}
                 <span
                   aria-hidden="true"
-                  className={`mt-1 h-3.5 w-3.5 rounded-full ring-4 ring-black md:mt-2 md:h-4 md:w-4 ${TYPE_COLOR[event.type]}`}
+                  className={`mt-1 h-3 w-3 shrink-0 rounded-full ring-[3px] ring-black sm:h-3.5 sm:w-3.5 sm:ring-4 md:mt-2 md:h-4 md:w-4 ${TYPE_COLOR[event.type]}`}
                 />
               </div>
 
-              <div className="grid gap-4 md:grid-cols-[1fr_auto] md:gap-8">
-                <div className="space-y-4">
-                  <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm">
-                    <span className="rounded border border-white/25 bg-white/5 px-2 py-1 font-mono text-cyan-200">
+              <div className="grid min-w-0 gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:gap-8">
+                <div className="min-w-0 space-y-3 sm:space-y-4">
+                  <div className="flex min-w-0 flex-wrap items-center gap-1.5 text-[10px] sm:gap-2 sm:text-xs md:text-sm">
+                    <span className="max-w-full truncate rounded border border-white/25 bg-white/5 px-2 py-1 font-mono text-cyan-200">
                       {event.branch}
                     </span>
                     <span className="rounded border border-white/25 bg-white/5 px-2 py-1 font-mono text-emerald-200">
@@ -157,7 +157,7 @@ export function DeveloperTimelineSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-semibold leading-tight md:text-4xl">{event.title}</h3>
+                  <h3 className="break-words text-xl font-semibold leading-tight sm:text-2xl md:text-4xl">{event.title}</h3>
                   <p className="max-w-4xl text-sm leading-relaxed text-white/75 md:text-lg">
                     {event.details}
                   </p>
@@ -166,7 +166,7 @@ export function DeveloperTimelineSection() {
                     {event.stack.map((item) => (
                       <span
                         key={item}
-                        className="rounded border border-white/25 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/85 md:text-xs"
+                        className="rounded border border-white/25 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/85 sm:px-2.5 sm:text-[11px] md:text-xs"
                       >
                         {item}
                       </span>
@@ -174,19 +174,19 @@ export function DeveloperTimelineSection() {
                   </div>
                 </div>
 
-                <div className="text-left md:min-w-[230px] md:text-right">
-                  <span className="rounded border border-white/25 bg-white/5 px-2 py-1 font-mono text-[11px] uppercase tracking-[0.08em] text-white/75 md:text-xs">
+                <div className="min-w-0 text-left md:min-w-[230px] md:text-right">
+                  <span className="inline-flex max-w-full rounded border border-white/25 bg-white/5 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-white/75 sm:text-[11px] md:text-xs">
                     {event.range}
                   </span>
                   <p className="my-3 text-[10px] font-mono uppercase tracking-[0.08em] text-white/50 md:text-[11px]">
                     {event.duration}
                   </p>
-                  <div className="flex flex-col items-start gap-3 md:items-end">
+                  <div className="flex flex-row flex-wrap items-start gap-3 md:flex-col md:items-end">
                     {event.links.map((link) => (
                       <a
                         key={link.label}
                         href={link.href}
-                        className="group inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/90 md:text-[11px]"
+                        className="group inline-flex min-w-0 items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/90 md:gap-2 md:text-[11px]"
                       >
                         <svg
                           aria-hidden="true"

@@ -61,7 +61,7 @@ html {
 .marquee-track {
   --marquee-gap: clamp(1.5rem, 4vw, 4rem);
   --marquee-sequence-offset: clamp(1.5rem, 6vw, 70px);
-  --marquee-shift: 0px;
+  --marquee-shift: 20%;
   --marquee-duration: 22s;
   width: max-content;
   display: flex;
@@ -70,6 +70,12 @@ html {
   backface-visibility: hidden;
   transform: translateZ(0);
   gap: 0;
+}
+
+@media (max-width: 767px) {
+  .marquee-track {
+    --marquee-duration: 12s;
+  }
 }
 
 .marquee-slow {
@@ -152,6 +158,12 @@ html {
   mix-blend-mode: difference;
   will-change: transform;
   transition: 180ms ease;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .invert-cursor-eight {
+    display: none;
+  }
 }
 
 .invert-cursor-lobe {

@@ -143,7 +143,7 @@ export function ProjectList() {
   };
 
   return (
-    <div className="mt-16 w-full border-t border-black/50 md:mt-20">
+    <div className="mt-8 w-full border-t border-black/50 md:mt-20">
       {PROJECTS.map((project) => {
         const isExpanded = expandedProject === project.id;
 
@@ -176,20 +176,20 @@ export function ProjectList() {
               />
             </div>
 
-            <div className="flex flex-col gap-4 md:flex-row md:items-center px-6 md:justify-between md:gap-8 md:px-10">
-              <div className="flex items-center gap-4 md:gap-6">
+            <div className="grid grid-cols-[1fr_auto] items-center gap-4 px-4 py-5 md:flex md:flex-row md:items-center md:justify-between md:gap-8 md:px-10 md:py-0">
+              <div className="grid min-w-0 grid-cols-[28px_42px_1px_1fr] items-center gap-3 md:flex md:items-center md:gap-6">
                 <span className={`text-2xl leading-none transition-colors duration-200 md:text-4xl ${isExpanded ? "" : "group-hover:text-white"}`}>⌘</span>
-                <div className="relative h-10 w-14 overflow-hidden bg-white md:h-20 md:w-35">
+                <div className="relative h-12 w-10 overflow-hidden bg-white md:h-20 md:w-35">
                   <Image
                     src={project.image}
                     alt={`${project.title} thumbnail`}
                     fill
-                    sizes="(max-width: 768px) 56px, 80px"
+                    sizes="(max-width: 768px) 40px, 80px"
                     className="object-cover object-center"
                   />
                 </div>
-                <span className={`h-10 w-px bg-black/70 transition-colors duration-200 md:h-12 ${isExpanded ? "" : "group-hover:bg-white/70"}`} aria-hidden="true" />
-                <p className={`py-8 text-2xl leading-tight transition-colors duration-200 md:text-3xl ${isExpanded ? "" : "group-hover:text-white"}`}>
+                <span className={`h-12 w-px bg-black/70 transition-colors duration-200 md:h-12 ${isExpanded ? "" : "group-hover:bg-white/70"}`} aria-hidden="true" />
+                <p className={`min-w-0 text-xl leading-tight transition-colors duration-200 md:py-8 md:text-3xl ${isExpanded ? "" : "group-hover:text-white"}`}>
                   {project.title} - {project.subtitle}
                 </p>
               </div>
@@ -197,7 +197,7 @@ export function ProjectList() {
               <button
                 type="button"
                 onClick={() => onToggleProject(project.id)}
-                className={`w-fit cursor-pointer rounded-lg border border-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] transition-colors md:px-5 md:py-3 ${
+                className={`w-fit cursor-pointer rounded-lg border border-black/70 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors md:px-5 md:py-3 md:text-xs ${
                   isExpanded
                     ? "bg-black text-white"
                     : `bg-transparent text-black hover:bg-white hover:text-black ${isExpanded ? "" : "group-hover:border-white/80 group-hover:text-white"}`

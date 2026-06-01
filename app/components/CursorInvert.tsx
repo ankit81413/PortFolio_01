@@ -16,6 +16,11 @@ export function CursorInvert() {
       return;
     }
 
+    if (window.matchMedia("(hover: none), (pointer: coarse)").matches) {
+      cursor.style.display = "none";
+      return;
+    }
+
     const setCursorPosition = (x: number, y: number, scale = 1) => {
       cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
     };
@@ -43,14 +48,6 @@ export function CursorInvert() {
       );
 
       if (interactiveElement !== hoveredElementRef.current) {
-        if (hoveredElementRef.current) {
-          console.log("unhovered");
-        }
-
-        if (interactiveElement) {
-          console.log("hovered");
-        }
-
         hoveredElementRef.current = interactiveElement;
       }
 

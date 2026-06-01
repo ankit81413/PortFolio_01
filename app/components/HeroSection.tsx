@@ -22,7 +22,7 @@ export function HeroSection() {
   const [showShoulderLinks, setShowShoulderLinks] = useState(false);
   const [countdownMs, setCountdownMs] = useState(3000);
   const sharedImageLayerClass =
-    "pointer-events-none absolute inset-x-0 top-0 mx-auto h-[87%] md:top-auto md:bottom-0";
+    "pointer-events-none absolute inset-x-[-26%] bottom-0 mx-auto h-[94%] md:inset-x-0 md:h-[87%]";
   const sectionRef = useRef<HTMLElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const firstSequenceRef = useRef<HTMLDivElement | null>(null);
@@ -60,15 +60,16 @@ export function HeroSection() {
     const secondSequence = secondSequenceRef.current;
     if (!track || !firstSequence || !secondSequence) return;
 
-    const pxPerSecond = 120;
+    const getMarqueeSpeed = () => (window.innerWidth < 768 ? 240 : 120);
 
     const syncMarquee = () => {
       const firstRect = firstSequence.getBoundingClientRect();
       const secondRect = secondSequence.getBoundingClientRect();
-      const sequenceStep = secondRect.left - firstRect.left;
-      if (!sequenceStep) return;
+      const sequenceStep = Math.abs(secondRect.left - firstRect.left);
+      if (!Number.isFinite(sequenceStep) || sequenceStep < 1) return;
 
-      const snappedStep = Math.round(sequenceStep);
+      const snappedStep = Math.max(1, Math.round(sequenceStep));
+      const pxPerSecond = getMarqueeSpeed();
       track.style.setProperty("--marquee-shift", `${snappedStep}px`);
       track.style.setProperty(
         "--marquee-duration",
@@ -76,17 +77,24 @@ export function HeroSection() {
       );
     };
 
-    syncMarquee();
+    const syncOnNextFrame = () => {
+      window.requestAnimationFrame(syncMarquee);
+    };
+
+    syncOnNextFrame();
+    const delayedSync = window.setTimeout(syncMarquee, 300);
+    document.fonts?.ready.then(syncMarquee).catch(() => undefined);
 
     const resizeObserver = new ResizeObserver(syncMarquee);
     resizeObserver.observe(firstSequence);
     resizeObserver.observe(secondSequence);
     resizeObserver.observe(document.documentElement);
-    window.addEventListener("resize", syncMarquee);
+    window.addEventListener("resize", syncOnNextFrame);
 
     return () => {
+      window.clearTimeout(delayedSync);
       resizeObserver.disconnect();
-      window.removeEventListener("resize", syncMarquee);
+      window.removeEventListener("resize", syncOnNextFrame);
     };
   }, []);
 
@@ -315,7 +323,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[520px] w-full overflow-hidden bg-white pt-20 md:h-screen"
+      className="relative h-full w-full overflow-hidden bg-white pt-20"
     >
       <div
         className="absolute inset-0 z-0"
@@ -350,7 +358,7 @@ export function HeroSection() {
         </div>
       ) : null}
 
-      <div className="pointer-events-none absolute inset-x-0 top-12 z-20 overflow-hidden md:top-1/2 md:-translate-y-1/2">
+      <div className="pointer-events-none absolute inset-x-0 top-[34%] z-20 overflow-hidden md:top-1/2 md:-translate-y-1/2">
         <div ref={trackRef} className="marquee-track marquee-right">
           {Array.from({ length: MARQUEE_SEQUENCE_COUNT }).map((_, index) => (
             <div
@@ -378,7 +386,7 @@ export function HeroSection() {
           fill
           sizes="(max-width: 768px) 90vw, 46vw"
           loading="eager"
-          className="object-contain object-top md:object-bottom"
+          className="scale-125 object-contain object-bottom md:scale-100"
         />
       </div>
 

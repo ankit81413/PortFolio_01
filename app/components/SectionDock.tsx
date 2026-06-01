@@ -5,11 +5,11 @@ import { BsTerminalFill } from "react-icons/bs";
 import { FuturisticTerminal } from "./FuturisticTerminal";
 
 const DOCK_LINKS = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#about-section" },
-  { label: "Projects", href: "#projects-section" },
-  { label: "Experience", href: "#experience-section" },
-  { label: "Contact", href: "#contact-section" },
+  { label: "Home", shortLabel: "Home", href: "#top" },
+  { label: "About", shortLabel: "About", href: "#about-section" },
+  { label: "Projects", shortLabel: "Work", href: "#projects-section" },
+  { label: "Experience", shortLabel: "Exp", href: "#experience-section" },
+  { label: "Contact", shortLabel: "Contact", href: "#contact-section" },
 ];
 
 export function SectionDock() {
@@ -99,7 +99,7 @@ export function SectionDock() {
       />
 
       <div
-        className={`fixed bottom-4 left-1/2 z-[80] -translate-x-1/2 transition-all duration-300 md:bottom-6 ${
+        className={`fixed inset-x-2 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-[80] flex justify-center transition-all duration-300 md:inset-x-auto md:bottom-6 md:left-1/2 md:-translate-x-1/2 ${
           showDock
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none translate-y-8 opacity-0"
@@ -107,7 +107,7 @@ export function SectionDock() {
       >
         <nav
           aria-label="Section dock"
-          className="flex items-center gap-2 rounded-full border border-white/15 bg-black/65 px-3 py-2.5 shadow-[0_20px_40px_-18px_rgba(0,0,0,0.75)] backdrop-blur-2xl md:gap-2.5 md:px-4 md:py-3"
+          className="flex max-w-[calc(100vw-1rem)] items-center gap-1 overflow-x-auto rounded-full border border-white/15 bg-black/65 px-2 py-2 shadow-[0_20px_40px_-18px_rgba(0,0,0,0.75)] [scrollbar-width:none] backdrop-blur-2xl [&::-webkit-scrollbar]:hidden md:max-w-none md:gap-2.5 md:overflow-visible md:px-4 md:py-3"
         >
           {DOCK_LINKS.map((link) => (
             <a
@@ -117,9 +117,10 @@ export function SectionDock() {
                 link.href === activeHref
                   ? "border border-white/25 bg-black/85 text-white shadow-[0_0_0_0.5px_rgba(255,255,255,0.12)]"
                   : "bg-transparent text-white/85 hover:bg-white/12 hover:text-white"
-              } rounded-full px-4 py-2 text-sm font-medium tracking-[0.01em] transition-colors duration-300 ease-out`}
+              } shrink-0 rounded-full px-2.5 py-2 text-[11px] font-medium tracking-[0.01em] transition-colors duration-300 ease-out sm:px-3 sm:text-xs md:px-4 md:text-sm`}
             >
-              {link.label}
+              <span className="md:hidden">{link.shortLabel}</span>
+              <span className="hidden md:inline">{link.label}</span>
             </a>
           ))}
 
@@ -132,7 +133,7 @@ export function SectionDock() {
               setIsTerminalMinimized(false);
               setIsTerminalOpen(true);
             }}
-            className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium tracking-[0.01em] transition-colors duration-300 ease-out ${
+            className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-2 text-[11px] font-medium tracking-[0.01em] transition-colors duration-300 ease-out sm:px-3 sm:text-xs md:gap-2 md:px-4 md:text-sm ${
               isTerminalOpen
                 ? "border border-cyan-200/40 bg-cyan-200/15 text-cyan-50"
                 : "bg-transparent text-white/85 hover:bg-white/12 hover:text-white"
@@ -140,7 +141,8 @@ export function SectionDock() {
             aria-pressed={isTerminalOpen}
           >
             <BsTerminalFill aria-hidden="true" />
-            Terminal
+            <span className="md:hidden">Term</span>
+            <span className="hidden md:inline">Terminal</span>
           </button>
         </nav>
       </div>

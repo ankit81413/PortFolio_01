@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { BsDownload, BsList, BsTreeFill } from "react-icons/bs";
 
 const LINKTREE_ITEMS = [
   { label: "GitHub", href: "https://github.com/", branch: "origin/github" },
@@ -23,6 +25,8 @@ export function Navbar() {
   const [showLinktreeHint, setShowLinktreeHint] = useState(false);
   const [suppressLinktreeHint, setSuppressLinktreeHint] = useState(false);
   const treeWrapRef = useRef<HTMLDivElement | null>(null);
+  const treeOpenedAtRef = useRef(0);
+  const treeOpenedScrollYRef = useRef(0);
 
   useEffect(() => {
     const about = document.getElementById("about-section");
@@ -86,6 +90,9 @@ export function Navbar() {
     if (!isTreeOpen) return;
 
     const onScrollClose = () => {
+      const openAge = Date.now() - treeOpenedAtRef.current;
+      const scrollDelta = Math.abs(window.scrollY - treeOpenedScrollYRef.current);
+      if (openAge < 350 || scrollDelta < 16) return;
       setIsTreeOpen(false);
     };
 
@@ -110,6 +117,21 @@ export function Navbar() {
     };
   }, [isTreeOpen]);
 
+  const toggleLinktree = () => {
+    setIsTreeOpen((current) => {
+      const willOpen = !current;
+
+      if (willOpen) {
+        setShowLinktreeHint(false);
+        setSuppressLinktreeHint(true);
+        treeOpenedAtRef.current = Date.now();
+        treeOpenedScrollYRef.current = window.scrollY;
+      }
+
+      return willOpen;
+    });
+  };
+
   return (
     <>
       <div
@@ -126,22 +148,29 @@ export function Navbar() {
       />
 
       <nav
-        className="fixed inset-x-0 top-4 z-50 mx-auto flex w-[calc(100%-2rem)] max-w-[1880px] items-center justify-between rounded-xl border border-black/10 bg-white/82 px-0 py-3 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-transform duration-200 md:top-7 md:w-[calc(100%-3.5rem)] md:px-5 md:py-3"
+        className="fixed inset-x-0 top-4 z-50 mx-auto flex w-[calc(100%-2rem)] max-w-[1880px] items-center justify-between rounded-xl border border-black/10 bg-white/82 px-3 py-3 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-transform duration-200 md:top-7 md:w-[calc(100%-3.5rem)] md:px-5 md:py-3"
         style={{
           transform: `translate3d(0, ${-offsetY}px, 0)`,
           willChange: "transform",
         }}
       >
-        <div className="flex min-w-0 items-center gap-4">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-black text-sm font-semibold tracking-wide text-white">
-            MO
-          </div>
-          <p className="truncate text-[10px] uppercase tracking-[0.11em] text-black/85 sm:text-[11px]">
-            Creative mind designing badass digital products & brands.
-          </p>
-        </div>
+        <a href="#top" className="flex min-w-0 items-center gap-3">
+          <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-black/10 bg-white">
+            <Image
+              src="/BannerMe.png"
+              alt="Ankit"
+              fill
+              sizes="44px"
+              className="object-contain object-top"
+              priority
+            />
+          </span>
+          <span className="truncate text-base font-semibold text-black md:text-lg">
+            Ankit
+          </span>
+        </a>
 
-        <div className="hidden items-center gap-3 text-[11px] uppercase tracking-[0.11em] text-black md:flex">
+        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.11em] text-black">
           <div ref={treeWrapRef} className="relative">
             {showLinktreeHint ? (
               <div className="pointer-events-none absolute top-[calc(100%+10px)] right-0 z-[75]">
@@ -155,28 +184,27 @@ export function Navbar() {
 
             <button
               type="button"
-              onClick={() => {
-                const willOpen = !isTreeOpen;
-                if (willOpen) {
-                  setShowLinktreeHint(false);
-                  setSuppressLinktreeHint(true);
-                }
-                setIsTreeOpen(willOpen);
-              }}
-              className={`inline-flex items-center gap-1 rounded-full border px-3 py-2 transition-all duration-200 ${
+              onClick={toggleLinktree}
+              className={`inline-flex touch-manipulation items-center gap-1 rounded-full border px-3 py-2 transition-all duration-200 ${
                 isTreeOpen
                   ? "border-black/25 bg-black/[0.08]"
                   : "border-transparent hover:border-black/10 hover:bg-black/[0.03]"
               }`}
               aria-expanded={isTreeOpen}
               aria-haspopup="menu"
+              aria-label="Open links menu"
             >
-              <i className="fa-solid fa-tree" aria-hidden="true"></i>
-              Linktree
+              <span className="inline-flex items-center md:hidden">
+                <BsList className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <span className="hidden items-center gap-1 md:inline-flex">
+                <BsTreeFill aria-hidden="true" />
+                Linktree
+              </span>
             </button>
 
             {isTreeOpen ? (
-              <div className="absolute right-0 top-[calc(100%+10px)] z-[70] w-[300px] overflow-hidden rounded-xl border border-white/15 bg-black/95 p-3 shadow-[0_16px_40px_-24px_rgba(0,0,0,0.75)] backdrop-blur-xl">
+              <div className="absolute right-0 top-[calc(100%+10px)] z-[70] w-[calc(100vw-2rem)] max-w-[330px] overflow-hidden rounded-xl border border-white/15 bg-black/95 p-3 shadow-[0_16px_40px_-24px_rgba(0,0,0,0.75)] backdrop-blur-xl md:w-[300px]">
                 <p className="mb-2 border-b border-white/15 pb-2 text-[10px] font-semibold tracking-[0.12em] text-white/55">
                   SOURCE CONTROL / REMOTES
                 </p>
@@ -186,34 +214,49 @@ export function Navbar() {
                     className="absolute left-[7px] top-1 h-[calc(100%-12px)] w-px bg-[#ff8a00]"
                   />
                   <ul className="space-y-1">
-                    {LINKTREE_ITEMS.map((item, index) => (
-                      <li key={item.label}>
-                        <a
-                          href={item.href}
-                          target={item.href.startsWith("mailto:") ? undefined : "_blank"}
-                          rel={item.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                          className="group grid grid-cols-[18px_1fr_auto] items-center gap-2 rounded-md border border-transparent px-1.5 py-1.5 text-[11px] tracking-[0.08em] text-white/85 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
-                        >
-                          <span className="relative flex h-4 items-center">
-                            <span
-                              aria-hidden="true"
-                              className="absolute left-[7px] top-1/2 h-px w-[10px] -translate-y-1/2 rounded-full"
-                              style={{ backgroundColor: BRANCH_NODE_COLORS[index % BRANCH_NODE_COLORS.length] }}
-                            />
-                            <span
-                              className="relative z-[1] h-2.5 w-2.5 rounded-full border border-black"
-                              style={{ backgroundColor: BRANCH_NODE_COLORS[index % BRANCH_NODE_COLORS.length] }}
-                            />
-                          </span>
-                          <span className="truncate font-semibold uppercase">{item.label}</span>
-                          <span className="font-mono text-[10px] uppercase tracking-[0.05em] text-white/50 transition-colors group-hover:text-white/75">
-                            {item.branch}
-                          </span>
-                        </a>
-                      </li>
-                    ))}
+                    {LINKTREE_ITEMS.map((item, index) => {
+                      const isMailLink = item.href.startsWith("mailto:");
+
+                      return (
+                        <li key={item.label}>
+                          <a
+                            href={item.href}
+                            target={isMailLink ? undefined : "_blank"}
+                            rel={isMailLink ? undefined : "noreferrer"}
+                            onClick={() => setIsTreeOpen(false)}
+                            className="group grid grid-cols-[18px_1fr_auto] items-center gap-2 rounded-md border border-transparent px-1.5 py-1.5 text-[11px] tracking-[0.08em] text-white/85 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
+                          >
+                            <span className="relative flex h-4 items-center">
+                              <span
+                                aria-hidden="true"
+                                className="absolute left-[7px] top-1/2 h-px w-[10px] -translate-y-1/2 rounded-full"
+                                style={{ backgroundColor: BRANCH_NODE_COLORS[index % BRANCH_NODE_COLORS.length] }}
+                              />
+                              <span
+                                className="relative z-[1] h-2.5 w-2.5 rounded-full border border-black"
+                                style={{ backgroundColor: BRANCH_NODE_COLORS[index % BRANCH_NODE_COLORS.length] }}
+                              />
+                            </span>
+                            <span className="truncate font-semibold uppercase">{item.label}</span>
+                            <span className="font-mono text-[10px] uppercase tracking-[0.05em] text-white/50 transition-colors group-hover:text-white/75">
+                              {item.branch}
+                            </span>
+                          </a>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
+
+                <a
+                  href="/Ankit_(Mern_Stack_Developer).pdf"
+                  download="Ankit_(Mern_Stack_Developer).pdf"
+                  onClick={() => setIsTreeOpen(false)}
+                  className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.11em] text-black transition-colors hover:bg-white/90 md:hidden"
+                >
+                  <BsDownload aria-hidden="true" />
+                  Download Resume
+                </a>
 
                 <div className="mt-3 border-t border-white/10 pt-3">
                   <button
@@ -223,7 +266,7 @@ export function Navbar() {
                     aria-expanded={isPagesOpen}
                   >
                     <span className="inline-flex items-center gap-2">
-                      <span className="text-[11px] leading-none">{isPagesOpen ? "▾" : "▸"}</span>
+                      <span className="text-[11px] leading-none">{isPagesOpen ? "v" : ">"}</span>
                       <span>PAGES</span>
                     </span>
                     <span className="font-mono text-[10px] text-white/45">{PAGE_ITEMS.length}</span>
@@ -235,6 +278,7 @@ export function Navbar() {
                         <li key={item.href}>
                           <a
                             href={item.href}
+                            onClick={() => setIsTreeOpen(false)}
                             className="group flex items-center justify-between rounded-md border border-transparent px-2 py-1.5 text-[11px] tracking-[0.08em] text-white/80 transition-colors hover:border-white/15 hover:bg-white/10 hover:text-white"
                           >
                             <span className="font-semibold uppercase">{item.label}</span>
@@ -254,9 +298,9 @@ export function Navbar() {
           <a
             href="/Ankit_(Mern_Stack_Developer).pdf"
             download="Ankit_(Mern_Stack_Developer).pdf"
-            className="inline-flex items-center gap-1 rounded-full border border-black/10 bg-black px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-black/85"
+            className="hidden items-center gap-1 rounded-full border border-black/10 bg-black px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-black/85 md:inline-flex"
           >
-            <i className="fa-solid fa-download"></i>
+            <BsDownload aria-hidden="true" />
             Download Resume
           </a>
         </div>
@@ -264,3 +308,4 @@ export function Navbar() {
     </>
   );
 }
+
