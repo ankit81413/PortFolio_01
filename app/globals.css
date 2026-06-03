@@ -415,3 +415,8 @@ html {
 .group:hover .project-expand-hint:not(.is-expanded)::after {
   animation: expand-hint-pulse 1.15s ease-out 2s infinite;
 }
+/* 
+#Navlogo img{
+  position: static !important;
+  height: unset !important;
+} */

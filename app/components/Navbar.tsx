@@ -2,13 +2,31 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { BsChevronDown, BsChevronRight, BsDownload, BsList, BsTreeFill } from "react-icons/bs";
+import {
+  BsChevronDown,
+  BsChevronRight,
+  BsDownload,
+  BsList,
+  BsTreeFill,
+} from "react-icons/bs";
 
 const LINKTREE_ITEMS = [
   { label: "GitHub", href: "https://github.com/", branch: "origin/github" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/", branch: "origin/linkedin" },
-  { label: "LeetCode", href: "https://leetcode.com/", branch: "origin/leetcode" },
-  { label: "Portfolio Email", href: "mailto:hello@example.com", branch: "origin/contact" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/",
+    branch: "origin/linkedin",
+  },
+  {
+    label: "LeetCode",
+    href: "https://leetcode.com/",
+    branch: "origin/leetcode",
+  },
+  {
+    label: "Portfolio Email",
+    href: "mailto:hello@example.com",
+    branch: "origin/contact",
+  },
 ] as const;
 const PAGE_ITEMS = [
   { label: "About", href: "#about-section" },
@@ -16,7 +34,12 @@ const PAGE_ITEMS = [
   { label: "Experience", href: "#experience-section" },
   { label: "Contact", href: "#contact-section" },
 ] as const;
-const BRANCH_NODE_COLORS = ["#ff8a00", "#39d0d0", "#ffc62a", "#ff8a00"] as const;
+const BRANCH_NODE_COLORS = [
+  "#ff8a00",
+  "#39d0d0",
+  "#ffc62a",
+  "#ff8a00",
+] as const;
 
 export function Navbar() {
   const [offsetY, setOffsetY] = useState(0);
@@ -91,7 +114,9 @@ export function Navbar() {
 
     const onScrollClose = () => {
       const openAge = Date.now() - treeOpenedAtRef.current;
-      const scrollDelta = Math.abs(window.scrollY - treeOpenedScrollYRef.current);
+      const scrollDelta = Math.abs(
+        window.scrollY - treeOpenedScrollYRef.current
+      );
       if (openAge < 350 || scrollDelta < 16) return;
       setIsTreeOpen(false);
     };
@@ -155,15 +180,17 @@ export function Navbar() {
         }}
       >
         <a href="#top" className="flex min-w-0 items-center gap-3">
-          <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-black/10 bg-white">
-            <Image
-              src="/BannerMe.png"
-              alt="Ankit"
-              fill
-              sizes="44px"
-              className="object-contain object-top"
-              priority
-            />
+          <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-black/10  bg-transparent">
+            <div className="flex items-end justify-end h-full" id="Navlogo">
+              <Image
+                src="/BannerMe.png"
+                alt="Ankit"
+                fill
+                sizes="100px"
+                className="object-cover object-top "
+                priority
+              />
+            </div>
           </span>
           <span className="truncate text-base font-semibold text-black md:text-lg">
             Ankit
@@ -177,7 +204,9 @@ export function Navbar() {
                 <span className="terminal-link-hint-notch absolute -top-[6px] right-5 h-3 w-3 rotate-45 border-t border-l border-white/20 bg-black/92" />
                 <div className="rounded-md border border-white/20 bg-black/92 px-3 py-2 font-mono text-[11px] tracking-[0.04em] text-white shadow-[0_10px_26px_-16px_rgba(0,0,0,0.9)] whitespace-nowrap">
                   <span className="mr-1 text-emerald-300">$SYS</span>
-                  <span className="terminal-link-hint-text">: click Linktree for links</span>
+                  <span className="terminal-link-hint-text">
+                    : click Linktree for links
+                  </span>
                 </div>
               </div>
             ) : null}
@@ -230,14 +259,26 @@ export function Navbar() {
                               <span
                                 aria-hidden="true"
                                 className="absolute left-[7px] top-1/2 h-px w-[10px] -translate-y-1/2 rounded-full"
-                                style={{ backgroundColor: BRANCH_NODE_COLORS[index % BRANCH_NODE_COLORS.length] }}
+                                style={{
+                                  backgroundColor:
+                                    BRANCH_NODE_COLORS[
+                                      index % BRANCH_NODE_COLORS.length
+                                    ],
+                                }}
                               />
                               <span
                                 className="relative z-[1] h-2.5 w-2.5 rounded-full border border-black"
-                                style={{ backgroundColor: BRANCH_NODE_COLORS[index % BRANCH_NODE_COLORS.length] }}
+                                style={{
+                                  backgroundColor:
+                                    BRANCH_NODE_COLORS[
+                                      index % BRANCH_NODE_COLORS.length
+                                    ],
+                                }}
                               />
                             </span>
-                            <span className="truncate font-semibold uppercase">{item.label}</span>
+                            <span className="truncate font-semibold uppercase">
+                              {item.label}
+                            </span>
                             <span className="font-mono text-[10px] uppercase tracking-[0.05em] text-white/50 transition-colors group-hover:text-white/75">
                               {item.branch}
                             </span>
@@ -267,13 +308,21 @@ export function Navbar() {
                   >
                     <span className="inline-flex items-center gap-2">
                       {isPagesOpen ? (
-                        <BsChevronDown className="h-3 w-3 text-white/75" aria-hidden="true" />
+                        <BsChevronDown
+                          className="h-3 w-3 text-white/75"
+                          aria-hidden="true"
+                        />
                       ) : (
-                        <BsChevronRight className="h-3 w-3 text-white/75" aria-hidden="true" />
+                        <BsChevronRight
+                          className="h-3 w-3 text-white/75"
+                          aria-hidden="true"
+                        />
                       )}
                       <span>PAGES</span>
                     </span>
-                    <span className="font-mono text-[10px] text-white/45">{PAGE_ITEMS.length}</span>
+                    <span className="font-mono text-[10px] text-white/45">
+                      {PAGE_ITEMS.length}
+                    </span>
                   </button>
 
                   {isPagesOpen ? (
@@ -285,7 +334,9 @@ export function Navbar() {
                             onClick={() => setIsTreeOpen(false)}
                             className="group flex items-center justify-between rounded-md border border-transparent px-2 py-1.5 text-[11px] tracking-[0.08em] text-white/80 transition-colors hover:border-white/15 hover:bg-white/10 hover:text-white"
                           >
-                            <span className="font-semibold uppercase">{item.label}</span>
+                            <span className="font-semibold uppercase">
+                              {item.label}
+                            </span>
                             <span className="font-mono text-[10px] text-white/40 transition-colors group-hover:text-white/65">
                               {item.href.replace("#", "")}
                             </span>
@@ -312,4 +363,3 @@ export function Navbar() {
     </>
   );
 }
-
