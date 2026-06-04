@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 
 const FOOTER_LINKS = [
-  { label: "GitHub", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "LeetCode", href: "#" },
-  { label: "Dribbble", href: "#" },
+  { label: "GitHub", href: "https://github.com/ankit81413" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/ankit81413/" },
+  { label: "LeetCode", href: "https://leetcode.com/u/ankit81413/" },
+  { label: "Email", href: "mailto:ankitsen81413@gmail.com" },
 ];
 
 const QUICK_LINKS = [
@@ -71,6 +71,8 @@ export function FooterSection() {
                 <li key={item.label}>
                   <a
                     href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
                     className="group inline-flex items-center gap-2 text-lg text-white/90 transition-colors hover:text-white"
                   >
                     {item.label}
@@ -86,7 +88,10 @@ export function FooterSection() {
             <ul className="space-y-3">
               {QUICK_LINKS.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="text-lg text-white/85 transition-colors hover:text-white">
+                  <a
+                    href={item.href}
+                    className="text-lg text-white/85 transition-colors hover:text-white"
+                  >
                     {item.label}
                   </a>
                 </li>

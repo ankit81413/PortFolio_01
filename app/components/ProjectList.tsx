@@ -14,75 +14,85 @@ type ProjectItem = {
 };
 
 const SKILL_ICON_MAP: Record<string, string> = {
-  Branding: "/logos/html.png",
-  "UI Design": "/logos/css.png",
-  "UX Research": "/logos/js.png",
-  Webflow: "/logos/react.png",
-  "Art Direction": "/logos/docker.jpg",
-  "Design System": "/logos/git.png",
-  Website: "/logos/node.png",
-  "Creative Direction": "/logos/express.png",
-  "Interaction": "/logos/mongodb.png",
-  Prototype: "/logos/react.png",
-  "Product Design": "/logos/html.png",
-  "Information Architecture": "/logos/css.png",
-  UI: "/logos/js.png",
-  Web: "/logos/node.png",
+  "AWS S3": "/skills/aws-s3.svg",
+  Bootstrap: "/skills/bootstrap.svg",
+  Docker: "/skills/docker.svg",
+  FFmpeg: "/skills/ffmpeg.svg",
+  Laravel: "/skills/laravel.svg",
+  MongoDB: "/skills/mongodb.svg",
+  MySQL: "/skills/mysql.svg",
+  "Next.js": "/skills/next.svg",
+  "Node.js": "/skills/node.svg",
+  PHP: "/skills/php.svg",
+  React: "/skills/react.svg",
+  Redis: "/skills/redis.svg",
+  "REST APIs": "/skills/rest-api.svg",
+  "Tailwind CSS": "/skills/tailwind.svg",
 };
 
 const PROJECTS: ProjectItem[] = [
   {
-    id: "barrett",
-    title: "Barrett Plastic Surgery",
-    subtitle: "Branding, Website",
+    id: "sportserp",
+    title: "Sports ERP",
+    subtitle: "Full-Stack, SaaS",
     description:
-      "A clean, premium desktop-first experience focused on trust, service clarity, and conversion-friendly page flow.",
-    image: "/BannerBackgroundl.png",
-    skills: ["Branding", "UI Design", "UX Research", "Webflow"],
+      "A multi-branch Sports ERP system handling POS billing, memberships, customer records, and role-based access - built for SwimmingPools running real operations.",
+    image: "/Projects/SportsERP.png",
+    skills: ["React", "Node.js", "MySQL", "AWS S3", "Laravel", "REST APIs"],
     links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
+      { label: "Live", href: "https://erpsports.com/" },
     ],
   },
   {
-    id: "mystudio",
-    title: "MyStudio",
-    subtitle: "Branding, Website, Art Direction",
+    id: "gamescreen",
+    title: "GameScreen",
+    subtitle: "Full-Stack, Media Platform",
     description:
-      "Built a strong visual language and content structure with scalable components for marketing and product storytelling.",
-    image: "/BannerBackgroundl.png",
-    skills: ["Branding", "Art Direction", "Design System", "Website"],
+      "A multi-user gaming wallpaper platform supporting 4K uploads, Personalised Feed, likes, comments, and downloads - built with an async media processing pipeline using Redis, FFmpeg, and AWS S3.",
+    image: "/Projects/GameScreen.png",
+    skills: ["React", "Node.js", "Laravel", "MongoDB", "Redis", "Docker", "AWS S3", "FFmpeg"],
     links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
+      { label: "Github", href: "https://github.com/ankit81413/GameScreen-Larevel" },
+      { label: "Live", href: "https://gamescreen.onrender.com" },
     ],
   },
   {
-    id: "instead",
-    title: "Instead",
-    subtitle: "Creative Direction, UI/UX",
+    id: "smartadmin",
+    title: "Smart Admin",
+    subtitle: "Full-Stack, Internal Tool",
     description:
-      "Designed the interface system and desktop interactions to improve readability, engagement, and feature discoverability.",
-    image: "/BannerBackgroundl.png",
-    skills: ["Creative Direction", "UI/UX", "Interaction", "Prototype"],
+      "A complete internal management system for a software company - handling employees, salaries, projects, tasks, client panels with real-time progress tracking, documents, and salary slips. Built end-to-end in Laravel and MySQL.",
+    image: "/Projects/SmartAdmin.png",
+    skills: ["Laravel", "PHP", "MySQL", "REST APIs"],
     links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
+      { label: "No public urls", href: "#" },
+      { label: "Companie's internal propperty", href: "#" },
     ],
   },
   {
-    id: "jsforwebflow",
-    title: "Js for Webflow",
-    subtitle: "Product Design",
+    id: "reachup",
+    title: "ReachUp Consulting",
+    subtitle: "Frontend, Web",
     description:
-      "Created a focused desktop product presentation with modular sections for tutorials, examples, and conversion touchpoints.",
-    image: "/BannerBackgroundl.png",
-    skills: ["Product Design", "Information Architecture", "UI", "Web"],
+      "A professional consulting website built for a German client - clean, responsive, and production-deployed.",
+    image: "/Projects/ReachUp.png",
+    skills: ["Next.js", "React", "Tailwind CSS", "Bootstrap"],
     links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
+      { label: "Live", href: "https://www.reachup-consulting.de/" },
     ],
   },
+  {
+    id: "extragroup",
+    title: "Extra Group",
+    subtitle: "Frontend, Web",
+    description:
+      "A production website built for a German client - responsive, clean, and live.",
+    image: "/Projects/ExtraGroup.png",
+    skills: ["Next.js", "React", "Tailwind CSS", "Bootstrap"],
+    links: [
+      { label: "Live", href: "https://extra-group.com/" },
+    ],
+  }
 ];
 
 export function ProjectList() {
@@ -170,15 +180,15 @@ export function ProjectList() {
               <Image
                 src={project.image}
                 alt=""
-                width={360}
-                height={210}
+                width={1920}
+                height={1880}
                 className="h-[260px] w-auto rounded-sm border border-black/20 bg-white object-cover object-top shadow-[0_16px_44px_rgba(0,0,0,0.24)]"
               />
             </div>
 
             <div className="grid grid-cols-[1fr_auto] items-center gap-4 px-4 py-5 md:flex md:flex-row md:items-center md:justify-between md:gap-8 md:px-10 md:py-0">
               <div className="grid min-w-0 grid-cols-[28px_42px_1px_1fr] items-center gap-3 md:flex md:items-center md:gap-6">
-                <span className={`text-2xl leading-none transition-colors duration-200 md:text-4xl ${isExpanded ? "" : "group-hover:text-white"}`}>⌘</span>
+                <span className={`text-2xl leading-none transition-colors duration-200 md:text-4xl ${isExpanded ? "" : "group-hover:text-white"}`}>#</span>
                 <div className="relative h-12 w-10 overflow-hidden bg-white md:h-20 md:w-35">
                   <Image
                     src={project.image}
@@ -251,7 +261,7 @@ export function ProjectList() {
                         >
                           <span className="relative h-4 w-4 overflow-hidden rounded-[2px]">
                             <Image
-                              src={SKILL_ICON_MAP[skill] ?? "/logos/react.png"}
+                              src={SKILL_ICON_MAP[skill] ?? "/skills/code.svg"}
                               alt=""
                               fill
                               sizes="16px"
@@ -269,6 +279,8 @@ export function ProjectList() {
                       <a
                         key={link.label}
                         href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
                         className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em]"
                       >
                         <svg

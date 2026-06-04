@@ -31,14 +31,15 @@ export default function Home() {
 
             <div className="max-w-5xl space-y-10">
               <p className="text-3xl font-medium leading-[1.3] text-white/90 md:text-6xl">
-                I build modern web products with a strong focus on clean UI,
-                meaningful motion, and fast, scalable full-stack development.
+                Full-stack developer with 1.5+ year of experience building web
+                apps using React, Node.js, MongoDB, AWS, and Docker.
               </p>
 
               <p className="max-w-3xl text-base leading-relaxed text-white/70 md:text-lg">
-                I am Ankit, a MERN stack developer. I enjoy turning ideas into
-                polished digital experiences that are practical, performant, and
-                visually memorable.
+                I&apos;m Ankit, a full-stack developer with 1.5+ year of experience.
+                I&apos;ve built ERPs, management systems, and production websites -
+                working across React, Node.js, Laravel, MongoDB, and cloud
+                infrastructure like AWS S3, Redis, and Docker.
               </p>
 
               <div className="max-w-4xl border-l border-white/20 pl-4 md:pl-6">
@@ -47,20 +48,23 @@ export default function Home() {
                 </p>
                 <ul className="space-y-1.5 text-sm leading-relaxed text-white/80 md:text-base">
                   <li>
-                    <span className="font-semibold text-white">Frontend</span> — React, Next.js, TypeScript, Tailwind
+                    <span className="font-semibold text-white">Frontend</span> -
+                    React, Next.js, TypeScript, Tailwind CSS
                   </li>
                   <li>
-                    <span className="font-semibold text-white">Backend</span> — Node.js, Express, REST APIs
+                    <span className="font-semibold text-white">Backend</span> -
+                    Node.js, Express.js, Laravel, REST APIs
                   </li>
                   <li>
-                    <span className="font-semibold text-white">Database</span> — MongoDB, Mongoose
+                    <span className="font-semibold text-white">Database</span> -
+                    MongoDB, MySQL
                   </li>
                   <li>
-                    <span className="font-semibold text-white">Tools</span> — Git, Figma, Postman
+                    <span className="font-semibold text-white">Tools</span> -
+                    Git, Docker, AWS, Redis, Postman
                   </li>
                 </ul>
               </div>
-
             </div>
           </div>
         </section>
@@ -79,7 +83,7 @@ export default function Home() {
                     Timeframe
                   </p>
                   <p className="text-3xl font-semibold leading-tight md:text-4xl">
-                    YEAR 2022-23
+                    Feb 2025-Present
                   </p>
                 </div>
 
@@ -88,10 +92,10 @@ export default function Home() {
                     Discipline
                   </p>
                   <ul className="space-y-1 text-xl leading-tight md:text-3xl">
-                    <li>No code development</li>
-                    <li>UI design</li>
-                    <li>UX research</li>
-                    <li>Art Direction</li>
+                    <li>Full-Stack Development</li>
+                    <li>UI Development</li>
+                    <li>System Architecture</li>
+                    <li>API Integration</li>
                   </ul>
                 </div>
 
@@ -100,9 +104,9 @@ export default function Home() {
                     Tools
                   </p>
                   <ul className="space-y-1 text-xl leading-tight md:text-3xl">
-                    <li>Webflow</li>
-                    <li>After Effects</li>
-                    <li>Wized</li>
+                    <li>React.js - Node.js</li>
+                    <li>Next.js</li>
+                    <li>Laravel</li>
                   </ul>
                 </div>
 
@@ -113,12 +117,12 @@ export default function Home() {
                   <div className="flex flex-wrap gap-2">
                     {[
                       "#TECH",
-                      "#CONSUMER",
-                      "#FINTECH",
-                      "#CRYPTO",
-                      "#NOCODE",
+                      "#FULLSTACK",
+                      "#MERN",
                       "#SAAS",
                       "#WEBAPP",
+                      "#ERP",
+                      "#CLOUD",
                     ].map((tag) => (
                       <span
                         key={tag}

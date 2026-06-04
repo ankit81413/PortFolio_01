@@ -11,21 +11,25 @@ import {
 } from "react-icons/bs";
 
 const LINKTREE_ITEMS = [
-  { label: "GitHub", href: "https://github.com/", branch: "origin/github" },
+  {
+    label: "GitHub",
+    href: "https://github.com/ankit81413",
+    branch: "origin/github",
+  },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/in/ankit81413/",
     branch: "origin/linkedin",
   },
   {
     label: "LeetCode",
-    href: "https://leetcode.com/",
+    href: "https://leetcode.com/u/ankit81413/",
     branch: "origin/leetcode",
   },
   {
     label: "Portfolio Email",
-    href: "mailto:hello@example.com",
-    branch: "origin/contact",
+    href: "mailto:ankitsen81413@gmail.com",
+    branch: "origin/mail",
   },
 ] as const;
 const PAGE_ITEMS = [
@@ -179,7 +183,10 @@ export function Navbar() {
           willChange: "transform",
         }}
       >
-        <a href="#top" className="flex min-w-0 items-center gap-3">
+        <a
+          href="#top"
+          className="flex min-w-0 items-center gap-3"
+        >
           <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-lg border border-black/10  bg-transparent">
             <div className="flex items-end justify-end h-full" id="Navlogo">
               <Image
@@ -244,14 +251,12 @@ export function Navbar() {
                   />
                   <ul className="space-y-1">
                     {LINKTREE_ITEMS.map((item, index) => {
-                      const isMailLink = item.href.startsWith("mailto:");
-
                       return (
                         <li key={item.label}>
                           <a
                             href={item.href}
-                            target={isMailLink ? undefined : "_blank"}
-                            rel={isMailLink ? undefined : "noreferrer"}
+                            target="_blank"
+                            rel="noreferrer"
                             onClick={() => setIsTreeOpen(false)}
                             className="group grid grid-cols-[18px_1fr_auto] items-center gap-2 rounded-md border border-transparent px-1.5 py-1.5 text-[11px] tracking-[0.08em] text-white/85 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
                           >
@@ -291,7 +296,8 @@ export function Navbar() {
 
                 <a
                   href="/Ankit_(Mern_Stack_Developer).pdf"
-                  download="Ankit_(Mern_Stack_Developer).pdf"
+                  target="_blank"
+                  rel="noreferrer"
                   onClick={() => setIsTreeOpen(false)}
                   className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.11em] text-black transition-colors hover:bg-white/90 md:hidden"
                 >
@@ -352,7 +358,8 @@ export function Navbar() {
 
           <a
             href="/Ankit_(Mern_Stack_Developer).pdf"
-            download="Ankit_(Mern_Stack_Developer).pdf"
+            target="_blank"
+            rel="noreferrer"
             className="hidden items-center gap-1 rounded-full border border-black/10 bg-black px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-black/85 md:inline-flex"
           >
             <BsDownload aria-hidden="true" />

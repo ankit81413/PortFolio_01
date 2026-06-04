@@ -3,7 +3,7 @@ type ExperienceEvent = {
   range: string;
   duration: string;
   branch: string;
-  type: "feat" | "learn" | "merge" | "release";
+  type: "feat" | "learn" | "merge" | "release" | "work";
   title: string;
   details: string;
   stack: string[];
@@ -12,88 +12,51 @@ type ExperienceEvent = {
 
 const TIMELINE_EVENTS: ExperienceEvent[] = [
   {
-    id: "t1",
-    range: "Apr, 2022 - Jul, 2022",
-    duration: "1 year 4 months",
-    branch: "bootcamp/start",
-    type: "learn",
-    title: "Started Full-Stack Journey",
-    details: "Began structured learning of JavaScript fundamentals and web architecture.",
-    stack: ["JavaScript", "HTML", "CSS"],
+    id: "t3",
+    range: "Jun, 2025 - Present",
+    duration: "1.5 years",
+    branch: "feat/fullstack-dev",
+    type: "work",
+    title: "Full-Stack Developer - MindCodeLab",
+    details:
+      "Building and shipping production systems - Sports ERP, Smart Admin, and client websites for German companies.",
+    stack: ["React", "Next.js", "Node.js", "Laravel", "MySQL", "AWS S3"],
     links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
+      { label: "MindCodeLab.pro", href: "https://www.mindcodelab.pro/" },
+      {
+        label: "Linkedin",
+        href: "https://www.linkedin.com/company/mindcodelab/",
+      },
     ],
   },
   {
     id: "t2",
-    range: "Aug, 2022 - Dec, 2022",
+    range: "Feb, 2025 - Jun, 2025",
     duration: "5 months",
-    branch: "feature/ui-systems",
-    type: "feat",
-    title: "Built First Reusable Component System",
-    details: "Created reusable UI patterns and shifted from page-by-page styling to system thinking.",
-    stack: ["React", "Tailwind"],
+    branch: "feat/internship",
+    type: "work",
+    title: "Web Dev Intern - MindCodeLab",
+    details:
+      "Started professional development on real client projects and internal systems.",
+    stack: ["React", "Laravel", "MySQL"],
     links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
+      { label: "MindCodeLab.pro", href: "https://www.mindcodelab.pro/" },
+      {
+        label: "Linkedin",
+        href: "https://www.linkedin.com/company/mindcodelab/",
+      },
     ],
   },
   {
-    id: "t3",
-    range: "Jan, 2023 - May, 2023",
-    duration: "5 months",
-    branch: "feature/api-integration",
-    type: "feat",
-    title: "Connected Frontend with Real APIs",
-    details: "Implemented API-driven flows and moved from static mocks to data-first interfaces.",
-    stack: ["Node.js", "Express", "REST"],
-    links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
-    ],
-  },
-  {
-    id: "t4",
-    range: "Jun, 2023 - Jan, 2024",
-    duration: "8 months",
-    branch: "feature/auth-security",
-    type: "feat",
-    title: "Shipped Authentication + Protected Routes",
-    details: "Added login/session flow and role-based access patterns for production-style behavior.",
-    stack: ["JWT", "MongoDB", "Express"],
-    links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
-    ],
-  },
-  {
-    id: "t5",
-    range: "Feb, 2024 - Dec, 2024",
-    duration: "11 months",
-    branch: "merge/freelance",
-    type: "merge",
-    title: "Moved Into Client Work",
-    details: "Started delivering projects for real users with focus on UX clarity and velocity.",
-    stack: ["MERN", "Git"],
-    links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
-    ],
-  },
-  {
-    id: "t6",
-    range: "Mar, 2025 - Feb, 2026",
-    duration: "1 year",
-    branch: "release/portfolio-v2",
-    type: "release",
-    title: "Portfolio Rebuild With Motion + Narrative",
-    details: "Designed a stronger brand voice and transformed portfolio into story-driven product case flow.",
-    stack: ["Next.js", "TypeScript", "Tailwind"],
-    links: [
-      { label: "Github", href: "#" },
-      { label: "Live", href: "#" },
-    ],
+    id: "t1",
+    range: "Aug, 2022 - May, 2025",
+    duration: "3 years",
+    branch: "edu/bca",
+    type: "learn",
+    title: "B.C.A - JMIT, Radaur",
+    details: "Bachelor of Computer Applications. Graduated with 70%.",
+    stack: [],
+    links: [],
   },
 ];
 
@@ -102,6 +65,7 @@ const TYPE_LABEL: Record<ExperienceEvent["type"], string> = {
   learn: "learn",
   merge: "merge",
   release: "release",
+  work: "work",
 };
 
 const TYPE_COLOR: Record<ExperienceEvent["type"], string> = {
@@ -109,6 +73,7 @@ const TYPE_COLOR: Record<ExperienceEvent["type"], string> = {
   learn: "bg-amber-300",
   merge: "bg-violet-400",
   release: "bg-emerald-400",
+  work: "bg-green-400",
 };
 
 export function DeveloperTimelineSection() {
@@ -123,7 +88,7 @@ export function DeveloperTimelineSection() {
             git log --graph --oneline --decorate
           </p>
           <h2 className="text-4xl font-semibold leading-none tracking-tight sm:text-5xl md:text-8xl">
-            Experience
+            Timeline
           </h2>
         </div>
 
@@ -142,7 +107,9 @@ export function DeveloperTimelineSection() {
                 ) : null}
                 <span
                   aria-hidden="true"
-                  className={`mt-1 h-3 w-3 shrink-0 rounded-full ring-[3px] ring-black sm:h-3.5 sm:w-3.5 sm:ring-4 md:mt-2 md:h-4 md:w-4 ${TYPE_COLOR[event.type]}`}
+                  className={`mt-1 h-3 w-3 shrink-0 rounded-full ring-[3px] ring-black sm:h-3.5 sm:w-3.5 sm:ring-4 md:mt-2 md:h-4 md:w-4 ${
+                    TYPE_COLOR[event.type]
+                  }`}
                 />
               </div>
 
@@ -157,7 +124,9 @@ export function DeveloperTimelineSection() {
                     </span>
                   </div>
 
-                  <h3 className="break-words text-xl font-semibold leading-tight sm:text-2xl md:text-4xl">{event.title}</h3>
+                  <h3 className="break-words text-xl font-semibold leading-tight sm:text-2xl md:text-4xl">
+                    {event.title}
+                  </h3>
                   <p className="max-w-4xl text-sm leading-relaxed text-white/75 md:text-lg">
                     {event.details}
                   </p>
@@ -186,6 +155,8 @@ export function DeveloperTimelineSection() {
                       <a
                         key={link.label}
                         href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
                         className="group inline-flex min-w-0 items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/90 md:gap-2 md:text-[11px]"
                       >
                         <svg
@@ -223,4 +194,3 @@ export function DeveloperTimelineSection() {
     </section>
   );
 }
-

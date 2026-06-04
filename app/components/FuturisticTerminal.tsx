@@ -28,9 +28,10 @@ type FuturisticTerminalProps = {
 };
 
 const SOCIAL_LINKS = {
-  github: "https://github.com/",
-  linkedin: "https://www.linkedin.com/",
-  leetcode: "https://leetcode.com/",
+  github: "https://github.com/ankit81413",
+  linkedin: "https://www.linkedin.com/in/ankit81413/",
+  leetcode: "https://leetcode.com/u/ankit81413/",
+  email: "mailto:ankitsen81413@gmail.com",
   resume: "/Ankit_(Mern_Stack_Developer).pdf",
 };
 
@@ -130,6 +131,10 @@ export function FuturisticTerminal({
         description: "print leetcode profile link",
         run: () => [createLine("link", "open leetcode", SOCIAL_LINKS.leetcode)],
       },
+      "/email": {
+        description: "print portfolio email",
+        run: () => [createLine("link", "send email", SOCIAL_LINKS.email)],
+      },
       "/resume": {
         description: "open resume",
         run: () => [createLine("link", "open resume", SOCIAL_LINKS.resume)],
@@ -137,10 +142,10 @@ export function FuturisticTerminal({
       "/skills": {
         description: "print technical stack",
         run: () => [
-          createLine("output", "frontend: React, Next.js, TypeScript, Tailwind"),
-          createLine("output", "backend: Node.js, Express, REST APIs"),
-          createLine("output", "database: MongoDB, Mongoose"),
-          createLine("output", "tools: Git, Figma, Postman"),
+          createLine("output", "frontend: React, Next.js, TypeScript, Tailwind CSS, Bootstrap"),
+          createLine("output", "backend: Node.js, Express.js, Laravel, REST APIs"),
+          createLine("output", "database: MongoDB, MySQL"),
+          createLine("output", "tools: Git, Docker, AWS S3, Redis, Postman, FFmpeg"),
         ],
       },
       "/whoami": {
@@ -333,8 +338,8 @@ export function FuturisticTerminal({
                       <span className="mr-2 text-emerald-300">$OUT</span>
                       <a
                         href={line.href}
-                        target={line.href.startsWith("#") || line.href.startsWith("mailto:") ? undefined : "_blank"}
-                        rel={line.href.startsWith("#") || line.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                        target={line.href.startsWith("#") ? undefined : "_blank"}
+                        rel={line.href.startsWith("#") ? undefined : "noreferrer"}
                         className="border-b border-dashed border-cyan-200/70 text-cyan-200 transition-colors hover:text-cyan-50"
                       >
                         {line.text}
@@ -380,7 +385,7 @@ export function FuturisticTerminal({
 
             <div className="border-t border-white/10 bg-black/25 px-4 py-3">
               <div className="flex flex-wrap gap-2">
-                {["/help", "/about", "/projects", "/github", "/linkedin", "/clr"].map((command) => (
+                {["/help", "/about", "/projects", "/github", "/linkedin", "/email"].map((command) => (
                   <button
                     key={command}
                     type="button"

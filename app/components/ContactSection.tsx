@@ -17,8 +17,8 @@ type ContactPoint = {
 const SOCIAL_CARDS: SocialCard[] = [
   {
     label: "GitHub",
-    handle: "@ankit-dev",
-    href: "#",
+    handle: "@ankit81413",
+    href: "https://github.com/ankit81413",
     iconClass: "fa-brands fa-github",
     boxClass: "border-lime-300 bg-lime-300/90 hover:bg-lime-300",
     iconWrapClass: "border-slate-300 bg-slate-900 text-white",
@@ -26,8 +26,8 @@ const SOCIAL_CARDS: SocialCard[] = [
   },
   {
     label: "LinkedIn",
-    handle: "Ankit Kumar",
-    href: "#",
+    handle: "ankit81413",
+    href: "https://www.linkedin.com/in/ankit81413/",
     iconClass: "fa-brands fa-linkedin-in",
     boxClass: "border-rose-300 bg-rose-500 hover:bg-rose-500/95",
     iconWrapClass: "border-sky-300 bg-sky-600 text-white",
@@ -35,20 +35,20 @@ const SOCIAL_CARDS: SocialCard[] = [
   },
   {
     label: "LeetCode",
-    handle: "ankit_codes",
-    href: "#",
+    handle: "ankit81413",
+    href: "https://leetcode.com/u/ankit81413/",
     iconClass: "fa-solid fa-code",
     boxClass: "border-violet-300 bg-violet-300/80 hover:bg-violet-300",
     iconWrapClass: "border-amber-300 bg-amber-500 text-white",
     titleClass: "text-black",
   },
   {
-    label: "Dribbble",
-    handle: "@ankit_ui",
-    href: "#",
-    iconClass: "fa-brands fa-dribbble",
+    label: "Download Resume",
+    handle: "Open resume",
+    href: "/Ankit_(Mern_Stack_Developer).pdf",
+    iconClass: "fa-solid fa-file-arrow-down",
     boxClass: "border-blue-400 bg-blue-500 hover:bg-blue-500/95",
-    iconWrapClass: "border-pink-300 bg-pink-500 text-white",
+    iconWrapClass: "border-cyan-300 bg-cyan-600 text-white",
     titleClass: "text-white",
   },
 ];
@@ -56,21 +56,21 @@ const SOCIAL_CARDS: SocialCard[] = [
 const CONTACT_POINTS: ContactPoint[] = [
   {
     label: "Email",
-    value: "ankit@example.com",
-    href: "mailto:ankit@example.com",
+    value: "ankitsen81413@gmail.com",
+    href: "mailto:ankitsen81413@gmail.com",
   },
   {
     label: "Phone",
-    value: "+91 90000 00000",
-    href: "tel:+919000000000",
+    value: "+91 7027522310",
+    href: "tel:+917027522310",
   },
   {
     label: "Location",
-    value: "Delhi, India",
+    value: "Mohali, Punjab, IN",
   },
   {
     label: "Availability",
-    value: "Open for freelance + full-time roles",
+    value: "Open to full-time roles. Actively interviewing.",
   },
 ];
 
@@ -93,6 +93,8 @@ export function ContactSection() {
               <a
                 key={item.label}
                 href={item.href}
+                target="_blank"
+                rel="noreferrer"
                 className={`group relative flex min-h-[165px] flex-col justify-between overflow-hidden rounded-2xl border p-4 transition-all duration-200 hover:-translate-y-0.5 sm:min-h-[190px] sm:p-5 md:min-h-[260px] ${item.boxClass}`}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -132,6 +134,8 @@ export function ContactSection() {
                     {item.href ? (
                       <a
                         href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
                         className="group relative flex items-center justify-between overflow-hidden rounded-lg border border-black/20 px-4 py-3"
                       >
                         <span className="pointer-events-none absolute inset-x-0 -top-full h-full bg-black transition-[top] duration-300 ease-out group-hover:top-0" />
