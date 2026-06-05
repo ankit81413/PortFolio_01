@@ -78,7 +78,7 @@ const PROJECTS: ProjectItem[] = [
     image: "/Projects/ReachUp.png",
     skills: ["Next.js", "React", "Tailwind CSS", "Bootstrap"],
     links: [
-      { label: "Live", href: "https://www.reachup-consulting.de/" },
+      // { label: "Live", href: "https://www.reachup-consulting.de/" },
     ],
   },
   {
@@ -90,7 +90,7 @@ const PROJECTS: ProjectItem[] = [
     image: "/Projects/ExtraGroup.png",
     skills: ["Next.js", "React", "Tailwind CSS", "Bootstrap"],
     links: [
-      { label: "Live", href: "https://extra-group.com/" },
+      // { label: "Live", href: "https://extra-group.com/" },
     ],
   }
 ];
