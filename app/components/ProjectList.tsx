@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -40,7 +40,7 @@ const PROJECTS: ProjectItem[] = [
     image: "/Projects/SportsERP.png",
     skills: ["React", "Node.js", "MySQL", "AWS S3", "Laravel", "REST APIs"],
     links: [
-      { label: "Live", href: "https://erpsports.com/" },
+      // { label: "Live", href: "https://erpsports.com/" },
     ],
   },
   {
