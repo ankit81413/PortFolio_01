@@ -1,4 +1,4 @@
-type ExperienceEvent = {
+﻿type ExperienceEvent = {
   id: string;
   range: string;
   duration: string;
@@ -19,14 +19,14 @@ const TIMELINE_EVENTS: ExperienceEvent[] = [
     type: "work",
     title: "Full-Stack Developer - MindCodeLab",
     details:
-      "Building and shipping production systems - Sports ERP, Smart Admin, and client websites for German companies.",
+      "Building and shipping production systems - ERPs, Employee management tools, etc.",
     stack: ["React", "Next.js", "Node.js", "Laravel", "MySQL", "AWS S3"],
     links: [
-      { label: "MindCodeLab.pro", href: "https://www.mindcodelab.pro/" },
-      {
-        label: "Linkedin",
-        href: "https://www.linkedin.com/company/mindcodelab/",
-      },
+      // { label: "MindCodeLab.pro", href: "https://www.mindcodelab.pro/" },
+      // {
+      //   label: "Linkedin",
+      //   href: "https://www.linkedin.com/company/mindcodelab/",
+      // },
     ],
   },
   {
@@ -40,11 +40,11 @@ const TIMELINE_EVENTS: ExperienceEvent[] = [
       "Started professional development on real client projects and internal systems.",
     stack: ["React", "Laravel", "MySQL"],
     links: [
-      { label: "MindCodeLab.pro", href: "https://www.mindcodelab.pro/" },
-      {
-        label: "Linkedin",
-        href: "https://www.linkedin.com/company/mindcodelab/",
-      },
+      // { label: "MindCodeLab.pro", href: "https://www.mindcodelab.pro/" },
+      // {
+      //   label: "Linkedin",
+      //   href: "https://www.linkedin.com/company/mindcodelab/",
+      // },
     ],
   },
   {
