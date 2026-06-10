@@ -40,7 +40,7 @@ const PROJECTS: ProjectItem[] = [
     image: "/Projects/ERP.png",
     skills: ["React", "Node.js", "MySQL", "AWS S3", "Laravel", "REST APIs"],
     links: [
-       { label: "Live link not availabl publically", href: "" },
+       { label: "Live link not availabl publically", href: "#" },
     ],
   },
   {
