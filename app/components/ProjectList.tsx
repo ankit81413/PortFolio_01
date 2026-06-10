@@ -31,18 +31,18 @@ const SKILL_ICON_MAP: Record<string, string> = {
 };
 
 const PROJECTS: ProjectItem[] = [
-  // {
-  //   id: "sportserp",
-  //   title: "Sports ERP",
-  //   subtitle: "Full-Stack, SaaS",
-  //   description:
-  //     "A multi-branch Sports ERP system handling POS billing, memberships, customer records, and role-based access - built for SwimmingPools running real operations.",
-  //   image: "/Projects/SportsERP.png",
-  //   skills: ["React", "Node.js", "MySQL", "AWS S3", "Laravel", "REST APIs"],
-  //   links: [
-  //     // { label: "Live", href: "https://erpsports.com/" },
-  //   ],
-  // },
+  {
+    id: "erp",
+    title: "Swimming Pool ERP",
+    subtitle: "Full-Stack, SaaS",
+    description:
+      "A multi-branch ERP system handling POS billing, memberships, customer records, and role-based access - built for SwimmingPools running real operations.",
+    image: "/Projects/ERP.png",
+    skills: ["React", "Node.js", "MySQL", "AWS S3", "Laravel", "REST APIs"],
+    links: [
+       { label: "Live link not availabl publically", href: "" },
+    ],
+  },
   {
     id: "gamescreen",
     title: "GameScreen",
@@ -56,43 +56,43 @@ const PROJECTS: ProjectItem[] = [
       { label: "Live", href: "https://gamescreen.onrender.com" },
     ],
   },
-  // {
-  //   id: "smartadmin",
-  //   title: "Smart Admin",
-  //   subtitle: "Full-Stack, Internal Tool",
-  //   description:
-  //     "A complete internal management system for a software company - handling employees, salaries, projects, tasks, client panels with real-time progress tracking, documents, and salary slips. Built end-to-end in Laravel and MySQL.",
-  //   image: "/Projects/SmartAdmin.png",
-  //   skills: ["Laravel", "PHP", "MySQL", "REST APIs"],
-  //   links: [
-  //     { label: "No public urls", href: "#" },
-  //     { label: "Companie's internal propperty", href: "#" },
-  //   ],
-  // },
-  // {
-  //   id: "reachup",
-  //   title: "ReachUp Consulting",
-  //   subtitle: "Frontend, Web",
-  //   description:
-  //     "A professional consulting website built for a German client - clean, responsive, and production-deployed.",
-  //   image: "/Projects/ReachUp.png",
-  //   skills: ["Next.js", "React", "Tailwind CSS", "Bootstrap"],
-  //   links: [
-  //     // { label: "Live", href: "https://www.reachup-consulting.de/" },
-  //   ],
-  // },
-  // {
-  //   id: "extragroup",
-  //   title: "Extra Group",
-  //   subtitle: "Frontend, Web",
-  //   description:
-  //     "A production website built for a German client - responsive, clean, and live.",
-  //   image: "/Projects/ExtraGroup.png",
-  //   skills: ["Next.js", "React", "Tailwind CSS", "Bootstrap"],
-  //   links: [
-  //     // { label: "Live", href: "https://extra-group.com/" },
-  //   ],
-  // }
+  {
+    id: "smartadmin",
+    title: "Smart Admin",
+    subtitle: "Full-Stack, Internal Tool",
+    description:
+      "A complete internal management system for a software company - handling employees, salaries, projects, tasks, client panels with real-time progress tracking, documents, and salary slips. Built end-to-end in Laravel and MySQL.",
+    image: "/Projects/SmartAdmin.png",
+    skills: ["Laravel", "PHP", "MySQL", "REST APIs"],
+    links: [
+      { label: "No public urls", href: "#" },
+      { label: "Companie's internal propperty", href: "#" },
+    ],
+  },
+  {
+    id: "reachup",
+    title: "ReachUp Consulting",
+    subtitle: "Frontend, Web",
+    description:
+      "A professional consulting website built for a German client - clean, responsive, and production-deployed.",
+    image: "/Projects/ReachUp.png",
+    skills: ["Next.js", "React", "Tailwind CSS", "Bootstrap"],
+    links: [
+      { label: "Live", href: "https://www.reachup-consulting.de/" },
+    ],
+  },
+  {
+    id: "extragroup",
+    title: "Extra Group",
+    subtitle: "Frontend, Web",
+    description:
+      "A production website built for a German client - responsive, clean, and live.",
+    image: "/Projects/ExtraGroup.png",
+    skills: ["Next.js", "React", "Tailwind CSS", "Bootstrap"],
+    links: [
+      { label: "Live", href: "https://extra-group.com/" },
+    ],
+  }
 ];
 
 export function ProjectList() {
