@@ -43,19 +43,19 @@ const PROJECTS: ProjectItem[] = [
   //     // { label: "Live", href: "https://erpsports.com/" },
   //   ],
   // },
-  // {
-  //   id: "gamescreen",
-  //   title: "GameScreen",
-  //   subtitle: "Full-Stack, Media Platform",
-  //   description:
-  //     "A multi-user gaming wallpaper platform supporting 4K uploads, Personalised Feed, likes, comments, and downloads - built with an async media processing pipeline using Redis, FFmpeg, and AWS S3.",
-  //   image: "/Projects/GameScreen.png",
-  //   skills: ["React", "Node.js", "Laravel", "MongoDB", "Redis", "Docker", "AWS S3", "FFmpeg"],
-  //   links: [
-  //     { label: "Github", href: "https://github.com/ankit81413/GameScreen-Larevel" },
-  //     { label: "Live", href: "https://gamescreen.onrender.com" },
-  //   ],
-  // },
+  {
+    id: "gamescreen",
+    title: "GameScreen",
+    subtitle: "Full-Stack, Media Platform",
+    description:
+      "A multi-user gaming wallpaper platform supporting 4K uploads, Personalised Feed, likes, comments, and downloads - built with an async media processing pipeline using Redis, FFmpeg, and AWS S3.",
+    image: "/Projects/GameScreen.png",
+    skills: ["React", "Node.js", "Laravel", "MongoDB", "Redis", "Docker", "AWS S3", "FFmpeg"],
+    links: [
+      { label: "Github", href: "https://github.com/ankit81413/GameScreen-Larevel" },
+      { label: "Live", href: "https://gamescreen.onrender.com" },
+    ],
+  },
   // {
   //   id: "smartadmin",
   //   title: "Smart Admin",
