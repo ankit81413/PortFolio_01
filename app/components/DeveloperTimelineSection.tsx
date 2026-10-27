@@ -14,7 +14,7 @@ const TIMELINE_EVENTS: ExperienceEvent[] = [
   {
     id: "t3",
     range: "Jun, 2025 - Present",
-    duration: "1.5 years",
+    duration: "2 years",
     branch: "feat/fullstack-dev",
     type: "work",
     title: "Full-Stack Developer - MindCodeLab",

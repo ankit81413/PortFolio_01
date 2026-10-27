@@ -420,3 +420,51 @@ html {
   position: static !important;
   height: unset !important;
 } */
+
+@keyframes rotateEnergy {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Optional helper agar inline styles ke bajaye classes use karni ho */
+.energy-blur-container {
+  filter: blur(14px);
+  mix-blend-mode: plus-lighter;
+}
+
+ .opensourcebadge{
+  /* position: relative; */
+}
+@keyframes rotateEnergy {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes capsulePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Capsule Aura Styling */
+/* .opensourcebadge {
+  position: relative;
+} */
+
+.opensourcebadge::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #fb6704, #0284c7, #db2777, #06b6d4);
+  background-size: 300% 300%;
+  z-index: -1;
+  filter: blur(12px);
+  opacity: 0.85;
+  animation: capsulePulse 3s ease-in-out infinite;
+}

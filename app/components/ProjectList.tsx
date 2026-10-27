@@ -32,6 +32,27 @@ const SKILL_ICON_MAP: Record<string, string> = {
 
 const PROJECTS: ProjectItem[] = [
   {
+    id: "kika",
+    title: "KIKA",
+    subtitle: "Full-Stack, Quick Commerce",
+    description:
+      "A quick-commerce platform for fashion, think Blinkit for clothes. Customer web app, delivery partner app and backend with real-time order tracking, payment flows and COD management.",
+    image: "/Projects/KIKA.png",
+    skills: [
+      "Next.js",
+      "React Native",
+      "Node.js",
+      "TypeScript",
+      "MongoDB",
+      "WebSockets",
+      "AWS EC2",
+      "AWS S3",
+    ],
+    links: [
+      { label: "Live link not available publicly", href: "#" },
+    ],
+  },
+  {
     id: "erp",
     title: "Swimming Pool ERP",
     subtitle: "Full-Stack, SaaS",

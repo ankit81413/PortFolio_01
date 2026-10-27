@@ -31,12 +31,12 @@ export default function Home() {
 
             <div className="max-w-5xl space-y-10">
               <p className="text-3xl font-medium leading-[1.3] text-white/90 md:text-6xl">
-                Full-stack developer with 1.5+ year of experience building web
+                Full-stack developer with 2 year of experience building web
                 apps using React, Node.js, MongoDB, AWS, and Docker.
               </p>
 
               <p className="max-w-3xl text-base leading-relaxed text-white/70 md:text-lg">
-                I&apos;m Ankit, a full-stack developer with 1.5+ year of experience.
+                I&apos;m Ankit, a full-stack developer with 2 year of experience.
                 I&apos;ve built ERPs, management systems, and production websites -
                 working across React, Node.js, Laravel, MongoDB, and cloud
                 infrastructure like AWS S3, Redis, and Docker.
@@ -49,19 +49,27 @@ export default function Home() {
                 <ul className="space-y-1.5 text-sm leading-relaxed text-white/80 md:text-base">
                   <li>
                     <span className="font-semibold text-white">Frontend</span> -
-                    React, Next.js, TypeScript, Tailwind CSS
+                    React, Next.js, Angular, TypeScript, Tailwind CSS
+                  </li>
+                  <li>
+                    <span className="font-semibold text-white">Mobile</span> -
+                    React Native
                   </li>
                   <li>
                     <span className="font-semibold text-white">Backend</span> -
-                    Node.js, Express.js, Laravel, REST APIs
+                    Node.js, Express.js, Laravel, REST APIs, WebSockets
+                  </li>
+                  <li>
+                    <span className="font-semibold text-white">AI</span> -
+                    RAG Systems, LangChain, LangGraph, LLM API Integrations
                   </li>
                   <li>
                     <span className="font-semibold text-white">Database</span> -
-                    MongoDB, MySQL
+                    MongoDB, MySQL, PostgreSQL
                   </li>
                   <li>
-                    <span className="font-semibold text-white">Tools</span> -
-                    Git, Docker, AWS, Redis, Postman
+                    <span className="font-semibold text-white">Cloud & Tools</span> -
+                    AWS (EC2, S3, Lambda), Docker, Redis, Git, Postman
                   </li>
                 </ul>
               </div>
