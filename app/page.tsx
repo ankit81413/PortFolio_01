@@ -7,6 +7,7 @@ import { ProjectList } from "./components/ProjectList";
 import { ProjectsStickyHeader } from "./components/ProjectsStickyHeader";
 import { SectionDock } from "./components/SectionDock";
 import { LoadingScreen } from "./components/LoadingScreen";
+import { OpenSourceSection } from "./components/OpenSourceSection";
 
 export default function Home() {
   return (
@@ -76,6 +77,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <OpenSourceSection />
 
         <section
           id="projects-section"
