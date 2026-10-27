@@ -573,26 +573,25 @@ html {
   line-height: 1;
 }
 
-.terminal-carousel-screen {
+.terminal-carousel-track {
+  display: flex;
+  height: 100%;
+  width: 300%;
+  transform: translateX(-33.333333%);
   will-change: transform;
+}
+
+.terminal-carousel-track-next {
+  transform: translateX(-66.666667%);
   transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.terminal-carousel-active { transform: translateX(0); }
-.terminal-carousel-exit-left { transform: translateX(-100%); }
-.terminal-carousel-exit-right { transform: translateX(100%); }
-.terminal-carousel-enter-right { transform: translateX(100%); animation: terminal-enter-from-right 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-.terminal-carousel-enter-left { transform: translateX(-100%); animation: terminal-enter-from-left 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-
-@keyframes terminal-enter-from-right {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+.terminal-carousel-track-previous {
+  transform: translateX(0);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@keyframes terminal-enter-from-left {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
-}
+.terminal-carousel-screen { overflow: hidden; }
 
 .terminal-carousel-button {
   border: 1px solid rgba(165, 243, 252, 0.32);
@@ -629,6 +628,8 @@ html {
 
   .terminal-carousel-screen {
     animation: none;
-    transition: none;
   }
+
+  .terminal-carousel-track-next,
+  .terminal-carousel-track-previous { transition: none; }
 }

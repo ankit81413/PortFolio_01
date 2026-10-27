@@ -18,36 +18,35 @@ const SCREENS = [
 
 export function OpenSourceSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [incomingIndex, setIncomingIndex] = useState<number | null>(null);
-  const [direction, setDirection] = useState<"next" | "previous">("next");
+  const [slideDirection, setSlideDirection] = useState<"next" | "previous" | null>(null);
 
   const changeScreen = useCallback((nextDirection: "next" | "previous") => {
-    if (incomingIndex !== null) return;
+    if (slideDirection !== null) return;
 
     const nextIndex = nextDirection === "next"
       ? (activeIndex + 1) % SCREENS.length
       : (activeIndex - 1 + SCREENS.length) % SCREENS.length;
 
-    setDirection(nextDirection);
-    setIncomingIndex(nextIndex);
+    setSlideDirection(nextDirection);
     window.setTimeout(() => {
       setActiveIndex(nextIndex);
-      setIncomingIndex(null);
+      setSlideDirection(null);
     }, 420);
-  }, [activeIndex, incomingIndex]);
+  }, [activeIndex, slideDirection]);
 
   useEffect(() => {
-    if (incomingIndex !== null) return;
+    if (slideDirection !== null) return;
 
     const autoplayTimer = window.setTimeout(() => {
       changeScreen("next");
     }, 5000);
 
     return () => window.clearTimeout(autoplayTimer);
-  }, [changeScreen, incomingIndex]);
+  }, [changeScreen, slideDirection]);
 
   const activeScreen = SCREENS[activeIndex];
-  const incomingScreen = incomingIndex === null ? null : SCREENS[incomingIndex];
+  const previousScreen = SCREENS[(activeIndex - 1 + SCREENS.length) % SCREENS.length];
+  const nextScreen = SCREENS[(activeIndex + 1) % SCREENS.length];
 
   return (
     <section id="opensource" className="relative z-30 overflow-hidden border-t border-dashed border-white/25 bg-[#070a0d] px-5 py-14 text-[#e9f9fa] md:h-[700px] md:px-10 md:py-0">
@@ -70,10 +69,13 @@ export function OpenSourceSection() {
         <div className="relative mx-auto w-full max-w-[680px] border border-cyan-100/15 bg-[#0a1116]/80 p-2 shadow-[0_28px_80px_-36px_rgba(0,0,0,1)]">
           <div className="mb-2 flex h-7 items-center justify-between border-b border-white/10 px-2 font-mono text-[9px] tracking-[0.12em] text-white/45"><span className="flex items-center gap-1.5"><i className="h-1.5 w-1.5 bg-[#f87171]" /><i className="h-1.5 w-1.5 bg-[#fbbf24]" /><i className="h-1.5 w-1.5 bg-[#67e8f9]" />VESSELSSH</span><span className="text-cyan-200/65 uppercase">...IN Development</span></div>
           <div className="relative aspect-video overflow-hidden border border-dashed border-cyan-100/25 bg-[#0b151c]">
-            <CarouselScreen screen={activeScreen} state={incomingScreen ? (direction === "next" ? "exit-left" : "exit-right") : "active"} priority />
-            {incomingScreen && <CarouselScreen screen={incomingScreen} state={direction === "next" ? "enter-right" : "enter-left"} />}
+            <div className={`terminal-carousel-track ${slideDirection ? `terminal-carousel-track-${slideDirection}` : ""}`}>
+              <CarouselScreen screen={previousScreen} />
+              <CarouselScreen screen={activeScreen} priority />
+              <CarouselScreen screen={nextScreen} />
+            </div>
             <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between bg-gradient-to-t from-[#03080c]/85 to-transparent px-3 pb-2 pt-8 font-mono text-[9px] tracking-[0.13em] text-cyan-50/80"><span>{activeScreen.label}</span><span>{String(activeIndex + 1).padStart(2, "0")} / 03</span></div>
-            <div className="absolute right-2 top-2 z-30 flex gap-1.5"><button type="button" onClick={() => changeScreen("previous")} disabled={incomingIndex !== null} aria-label="Previous VesselSSH screen" className="terminal-carousel-button cursor-pointer">PREV</button><button type="button" onClick={() => changeScreen("next")} disabled={incomingIndex !== null} aria-label="Next VesselSSH screen" className="terminal-carousel-button cursor-pointer">NEXT</button></div>
+            <div className="absolute right-2 top-2 z-30 flex gap-1.5"><button type="button" onClick={() => changeScreen("previous")} disabled={slideDirection !== null} aria-label="Previous VesselSSH screen" className="terminal-carousel-button cursor-pointer">PREV</button><button type="button" onClick={() => changeScreen("next")} disabled={slideDirection !== null} aria-label="Next VesselSSH screen" className="terminal-carousel-button cursor-pointer">NEXT</button></div>
           </div>
         </div>
       </div>
@@ -81,8 +83,8 @@ export function OpenSourceSection() {
   );
 }
 
-type CarouselScreenProps = { screen: (typeof SCREENS)[number]; state: "active" | "exit-left" | "exit-right" | "enter-left" | "enter-right"; priority?: boolean };
+type CarouselScreenProps = { screen: (typeof SCREENS)[number]; priority?: boolean };
 
-function CarouselScreen({ screen, state, priority = false }: CarouselScreenProps) {
-  return <div className={`absolute inset-0 terminal-carousel-screen terminal-carousel-${state}`}><Image src={screen.src} alt={screen.alt} fill priority={priority} sizes="(max-width: 767px) calc(100vw - 3rem), 660px" className="object-cover object-top" /><div aria-hidden="true" className="absolute inset-0 bg-gradient-to-tr from-[#041519]/40 via-transparent to-cyan-200/10" /></div>;
+function CarouselScreen({ screen, priority = false }: CarouselScreenProps) {
+  return <div className="terminal-carousel-screen relative h-full w-1/3 shrink-0"><Image src={screen.src} alt={screen.alt} fill priority={priority} sizes="(max-width: 767px) calc(100vw - 3rem), 660px" className="object-cover object-top" /><div aria-hidden="true" className="absolute inset-0 bg-gradient-to-tr from-[#041519]/40 via-transparent to-cyan-200/10" /></div>;
 }
