@@ -11,9 +11,9 @@ const STATS = [
 ];
 
 const SCREENS = [
-  { src: "/opensource/Opensource1.png", alt: "VesselSSH application workspace", label: "WORKSPACE" },
-  { src: "/opensource/Opensource2.png", alt: "VesselSSH server overview", label: "SERVERS" },
-  { src: "/opensource/Opensource3.png", alt: "VesselSSH terminal and process tools", label: "TERMINAL / PROCESSES" },
+  { src: "/OpenSource/Opensource1.png", alt: "VesselSSH application workspace", label: "WORKSPACE" },
+  { src: "/OpenSource/Opensource2.png", alt: "VesselSSH server overview", label: "SERVERS" },
+  { src: "/OpenSource/Opensource3.png", alt: "VesselSSH terminal and process tools", label: "TERMINAL / PROCESSES" },
 ];
 
 export function OpenSourceSection() {
